@@ -1,5 +1,5 @@
 // This set up, is available only for authorized User, which wants to keep his daily notes. 
-// Will be rendered on front end only for userID
+// Will be rendered on front end only for specific User
 
 const mongoose = require('mongoose');
 

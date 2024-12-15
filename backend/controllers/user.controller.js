@@ -6,8 +6,7 @@ const getUserById = async (req, res) => {
         return res.send(user);
     } catch (error) {
         return res.status(500).send({msg:"User can not be found", error})
-    }
- 
+        }
     };
 
 const createUser = async (req, res) => {
@@ -29,7 +28,7 @@ const updateUser = async (req, res) => {
         let isUserFound = await User.findOne({_id: id});
         if (!isUserFound) return res.send({msg: "User is not found."});
 
-        let updatedUser = await Blog.findByIdAndUpdate (id, newValue);
+        let updatedUser = await User.findByIdAndUpdate (id, newValue);
         return res.send({msg: "User has been updated successfully.", updatedUser});
     } catch (error) {
         console.log(error);
@@ -44,7 +43,7 @@ const deleteUser = async (req, res) => {
         let isUserFound = await User.findOne({_id: id});
         if (!isUserFound) return res.send({msg: "User is not found."});
 
-        let deletedUser = await Blog.findByIdAndDelete (id);
+        let deletedUser = await User.findByIdAndDelete (id);
         return res.send({msg: "User has been deleted successfully.", deletedUser});
     } catch (error) {
         console.log(error);

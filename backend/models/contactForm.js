@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 const contactSchema = new mongoose.Schema({
-    firstName: {type: String, required: true},
-    surname: {type: String, required: true},
+    name: {type: String, required: true},
     email: {type: String, required: true, lowerCase: true, unique: true},
     phone: {
         type: Number,
@@ -13,6 +12,8 @@ const contactSchema = new mongoose.Schema({
             message: '{VALUE} is not a valid phone number!'
         }
     },
+    message: {type: String, required: true},
+    createdAt: { type: Date, default: Date.now }
   });
 
 const Contact = mongoose.model('Contact', contactSchema); // model always starts with capital letter and singular
