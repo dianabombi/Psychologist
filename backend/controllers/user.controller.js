@@ -12,7 +12,7 @@ const register = async (req, res) => {
         let oldUser = await User.findOne({email});
         if (oldUser)
         return res.send({msg: "User is already registered, please login or sign up with new email."});
-        let hashedPassword = await bcrypt.hash(password, 10);
+        let hashedPassword = await bcrypt.hash(password, +process.env.SALT_ROUND);
         await User.create({
             firstName,
             surname,
@@ -51,7 +51,7 @@ const login = async (req, res) => {
             email: doesUserExist.email,
         }
 
-        let token = await jwt.sign(payload,"diana@123456789");
+        let token = await jwt.sign(payload, process.env.SECRET_KEY);
         return res.send({msg: "Login successfully", token});
     } catch (error) {
         return res.status(500).send({msg:"Internal server error", error});

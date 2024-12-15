@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const URI = "mongodb+srv://diana:diana1234@cluster0.zfdnm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const URI = process.env.MONGODB_URI;
 
 main()
     .then(() => console.log(`Database is connected successfully`))
