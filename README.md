@@ -1,4 +1,19 @@
 # Safe Space Psychology
+__BOOKING SYSTEM__
+<br>
+Ability to book the session according to the availability calendar. 
+Clients can choose from the online calendar the best suitable time and date for therapy.
+
+__BLOG__
+<br>
+Section full of resources for clients and self development.
+Personality tests.
+
+
+- this section is editable only by the owner of webpage or Admin account
+- visibility = for all visitors of webpage
+- doesn't belong to premium content 
+
 
 __CONTACT FORM__
 <br>
@@ -12,12 +27,6 @@ Diary is the section built by daily notes, by specific User.
 This section is accessible only for specific User
 
 
-__BLOG__
-<br>
-Section full of resources for clients and self development.
-Personality tests.
-- this section is editable only by the owner of webpage or Admin account
-- visibility = for all visitors of webpage
-- doesn't belong to premium content 
+
 
 
