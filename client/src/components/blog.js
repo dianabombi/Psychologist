@@ -6,8 +6,8 @@ function Blog () {
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
     const [date, setDate] = useState("");
-    const [content, setContent] = useState("");
-    const [savedData, setSavedData] = useState(null);   
+    const [content, setContent] = useState(""); 
+    const [blogs, setBlogs] = useState([]); 
 
     const handleSubmit = (e) => {
         e.preventDefault ();
@@ -15,9 +15,13 @@ function Blog () {
     };
 
     const handleSave = () => {
-        const data = { title, category, date, content };
-        console.log('Data saved:', data);
-        setSavedData(data);
+
+        const newBlog = { title, category, date, content };
+
+        setBlogs([...blogs, newBlog]); 
+
+        console.log('Blog saved:', newBlog);
+
         setTitle('');
         setCategory('');
         setDate('');
@@ -67,20 +71,22 @@ function Blog () {
                     onChange={(e) => setContent(e.target.value)}
                     placeholder="Write your article here"
                 />   
-                   <MyButton text="SAVE"/>
+                   <MyButton text="SAVE"  onClick={handleSave}/>
             </form>
 
-            {savedData && (
-                <div>
-                    <h3>Saved Data:</h3>
-                        <p><strong>Title:</strong> {savedData.title}</p>
-                        <p><strong>Category:</strong> {savedData.category}</p>
-                        <p><strong>Date:</strong> {savedData.date}</p>
-                        <p><strong>Content:</strong> {savedData.content}</p>
+            <div>
+            <h3>Saved Blogs:</h3>
+            {blogs.map ((blog, index) => (
+                <div key={index}>
+                    <p><strong>Title:</strong> {blog.title}</p>
+                    <p><strong>Category:</strong> {blog.category}</p>
+                    <p><strong>Date:</strong> {blog.date}</p>
+                    <p><strong>Content:</strong> {blog.content}</p>
                 </div>
-            )}
+            ))}
+            </div>
         </div>  
-    )
+    );
 }
 
 export default Blog;
