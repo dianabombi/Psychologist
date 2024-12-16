@@ -7,9 +7,21 @@ function Blog () {
     const [category, setCategory] = useState("");
     const [date, setDate] = useState("");
     const [content, setContent] = useState("");
+    const [savedData, setSavedData] = useState(null);   
 
     const handleSubmit = (e) => {
         e.preventDefault ();
+        handleSave();
+    };
+
+    const handleSave = () => {
+        const data = { title, category, date, content };
+        console.log('Data saved:', data);
+        setSavedData(data);
+        setTitle('');
+        setCategory('');
+        setDate('');
+        setContent('');
     };
 
     return (
@@ -51,16 +63,23 @@ function Blog () {
                     type="text"
                     id="content"
                     name="content"
-                    value={date}
+                    value={content}
                     onChange={(e) => setContent(e.target.value)}
                     placeholder="Write your article here"
-                    minRows={6}
-                    maxRows={10}
                 />   
+                   <MyButton text="SAVE"/>
             </form>
-            <MyButton />
-        </div>
-       
+
+            {savedData && (
+                <div>
+                    <h3>Saved Data:</h3>
+                        <p><strong>Title:</strong> {savedData.title}</p>
+                        <p><strong>Category:</strong> {savedData.category}</p>
+                        <p><strong>Date:</strong> {savedData.date}</p>
+                        <p><strong>Content:</strong> {savedData.content}</p>
+                </div>
+            )}
+        </div>  
     )
 }
 

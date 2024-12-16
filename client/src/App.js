@@ -1,19 +1,21 @@
 import React from "react";
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+
 import NavBar from "./components/navBar";
-import Blog from "./components/blog";
 import HomePage from "./components/homePage";
 import BookingSystem from "./components/bookingSystem";
 
 
 function App() {
-  return (
-    <div className="App">
 
-      <BookingSystem />
-      {/* <NavBar />
-      <HomePage />
-      <Blog /> */}
-    </div>
+  return (
+    <BrowserRouter>
+      <NavBar /> {/* Navbar visible on all pages */}
+      <Routes>
+        <Route path="/" element={<HomePage />} /> {/* Homepage Route */}
+        <Route path="/bookings" element={<BookingSystem />} /> {/* Booking page */}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
