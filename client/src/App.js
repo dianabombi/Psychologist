@@ -1,13 +1,18 @@
 import React from "react";
 import NavBar from "./components/navBar";
 import Blog from "./components/blog";
+import HomePage from "./components/homePage";
+import BookingSystem from "./components/bookingSystem";
 
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <Blog />
+
+      <BookingSystem />
+      {/* <NavBar />
+      <HomePage />
+      <Blog /> */}
     </div>
   );
 }
