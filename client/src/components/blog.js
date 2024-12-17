@@ -28,8 +28,6 @@ function Blog () {
         setContent('');
     };
 
-    
-
     return (
         <div>   
              <form onSubmit={handleSubmit}>
