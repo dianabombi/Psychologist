@@ -2,6 +2,7 @@ import React from 'react';
 import Blog from './blog';
 
 function HomePage() {
+  
   return (
     <div className="flex flex-row">
       <img src="/images/BaraPsychologist.jpg" className="size-3/12 mx-10 my-10 rounded-xl" />
