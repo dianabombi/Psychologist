@@ -24,6 +24,10 @@ function NavBar () {
   const handleLoginClick = () => {
     navigate ("/login");
   }
+
+  const handleBlogClick = () => {
+    navigate ("/blog")
+  }
   
   return (
     <div className="bg-gray-800 text-white p-4 flex justify-between items-center">
@@ -39,7 +43,7 @@ function NavBar () {
         <MyButton text="Book an appointment" onClick={handleBookingClick} />
         <MyButton text="Register" onClick={handleRegisterClick} />
         <MyButton text="Login" onClick={handleLoginClick}/>
-
+        <MyButton text="Blog" onClick={handleBlogClick}/>
       </div>
     </div>
   );

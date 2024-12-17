@@ -6,6 +6,7 @@ import HomePage from "./components/homePage";
 import BookingSystem from "./components/bookingSystem";
 import Register from "./components/register";
 import Login from "./components/login";
+import Blog from "./components/blog";
 
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
         <Route path="/bookings" element={<BookingSystem />} /> {/* Booking page */}
         <Route path="/register" element={<Register />}  /> {/* Register Route */}
         <Route path="/login" element={<Login />}  /> {/* Login Route */}
+        <Route path="/blog" element={<Blog />}  /> {/* Blog Route */}
+
 
       </Routes>
     </BrowserRouter>
