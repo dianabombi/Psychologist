@@ -15,7 +15,8 @@ const userSchema = new mongoose.Schema({
     },
     password: {type: String, required: true},
     password2: {type: String, required: true}, // confirmation of password - has to bee same as previous field
-  });
+    role: {type: String, enum: ["User", "Admin"], default: "User"}
+});
 
 const User = mongoose.model('User', userSchema); // model always starts with capital letter and singular
  

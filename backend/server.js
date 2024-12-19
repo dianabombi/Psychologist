@@ -10,6 +10,7 @@ const blogRoutes = require ("./routes/blog.routes");
 const diaryRoutes = require ("./routes/diary.routes");
 const contactRoutes = require ("./routes/contact.routes");
 const bookingRoutes = require ("./routes/booking.routes");
+const adminRoutes = require ("./routes/admin.routes")
 
 const port = 8000;
 
@@ -23,6 +24,7 @@ app.use("/blogs", blogRoutes);
 app.use("/diary", diaryRoutes);
 app.use("/contactForm", contactRoutes);
 app.use("/bookings",bookingRoutes);
+app.use("/admin", adminRoutes);
 
 
 app.get('/', (req, res) => {
