@@ -52,10 +52,10 @@ function Register() {
     };
 
   return (
-    <div>
+    <div className = "register-page">
         <h1>REGISTER</h1>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="register-form">
 
             <label htmlFor="firstName">First Name</label>
             <input 

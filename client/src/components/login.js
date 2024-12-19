@@ -30,8 +30,8 @@ function Login() {
     };
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
+    <div className="login-page">
+        <form onSubmit={handleSubmit} className="login-form">
            
             <h2>LOGIN</h2>
 
