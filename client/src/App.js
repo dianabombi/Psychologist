@@ -12,7 +12,6 @@ import Dashboard from "./components/Dashboard";
 
 function App() {
 
-
   return (
     <BrowserRouter>
       <NavBar /> {/* Navbar visible on all pages */}
