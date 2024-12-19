@@ -14,7 +14,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar /> {/* Navbar visible on all pages */}
       <Routes>
         <Route path="/" element={<HomePage />} /> {/* Homepage Route */}
         <Route path="/bookings" element={<BookingSystem />} /> {/* Booking page */}

@@ -11,7 +11,6 @@ function Blog () {
 
     const handleSubmit = (e) => {
         e.preventDefault ();
-        handleSave();
     };
 
     const handleSave = () => {
