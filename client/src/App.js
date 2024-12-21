@@ -8,6 +8,7 @@ import Register from "./components/register";
 import Login from "./components/login";
 import Blog from "./components/blog";
 import Dashboard from "./components/Dashboard";
+import About from "./components/about";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/login" element={<Login />}  /> {/* Login Route */}
         <Route path="/blog" element={<Blog />}  /> {/* Blog Route */}
         <Route path="/admin" element={<Dashboard />}  /> {/* Blog Route */}
+        <Route path="/about" element={<About />}  /> {/* About Route */}
       </Routes>
     </BrowserRouter>
   );

@@ -29,21 +29,24 @@ function NavBar () {
   }
 
   const handleBlogClick = () => {
-    navigate ("/blog")
+    navigate ("/blog");
+  }
+
+  const handleAboutClick = () => {
+    navigate ("about");
   }
   
   return (
    
-    <div className="">
+    <div className="navBar">
    
-     <ul className="navBar">
+     <ul className="listBar">
 
         <FontAwesomeIcon 
         icon={faHouse}
         onClick={handleHomeClick}
         />
-                <li className="navItem">Home</li>
-                <li className="navItem">About</li>
+                <li className="navItem" onClick={handleAboutClick}>About</li>
                 <li className="navItem" onClick={handleLoginClick}>Login</li>
                 <li className="navItem" onClick={handleRegisterClick}>Register</li>
               
@@ -63,7 +66,6 @@ function NavBar () {
                         </ul>
                     )}
                 </li>
-                <li className="navItem">Contact</li>
             </ul>   
         </div>
     );

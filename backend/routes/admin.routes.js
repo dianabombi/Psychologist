@@ -8,5 +8,6 @@ const {
 
 router.put("/:id", confirmBooking);
 router.post("/timeSlot", createTimeSlot);
+router.post ("/about");
 
 module.exports = router;
