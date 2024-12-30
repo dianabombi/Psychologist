@@ -8,6 +8,8 @@ function Blog () {
     const [date, setDate] = useState("");
     const [content, setContent] = useState(""); 
     const [blogs, setBlogs] = useState([]); 
+    const [editIndex, setEditIndex] = useState(null);
+    const [editBlog, setEditBlog] = useState(null);
 
     const handleSubmit = (e) => {
         e.preventDefault ();
@@ -16,7 +18,6 @@ function Blog () {
     const handleSave = () => {
 
         const newBlog = { title, category, date, content };
-
         setBlogs([...blogs, newBlog]); 
 
         console.log('Blog saved:', newBlog);
@@ -26,6 +27,25 @@ function Blog () {
         setDate('');
         setContent('');
     };
+
+    const handleEdit = (index) => {
+        setEditIndex(index);
+        setEditBlog ({...blogs[index]});
+    };
+
+    const handleEditChange = (e) => {
+        const {name, value} = e.target;
+        setEditBlog ({...editBlog, [name]: value});
+    };
+
+    const handleEditSave = () => {
+        const updatedBlogs = blogs.map((blog, i) =>
+          i === editIndex ? editBlog : blog
+        );
+        setBlogs(updatedBlogs);
+        setEditIndex(null); // Exit editing mode
+        setEditBlog(null); // Clear editing state
+      };
 
     return (
         <div>   
@@ -74,18 +94,64 @@ function Blog () {
             </form>
 
             <div>
-            <h3>Saved Blogs:</h3>
+            <h3>Blogs</h3>
             {blogs.map ((blog, index) => (
                 <div key={index}>
-                    <p><strong>Title:</strong> {blog.title}</p>
-                    <p><strong>Category:</strong> {blog.category}</p>
-                    <p><strong>Date:</strong> {blog.date}</p>
-                    <p><strong>Content:</strong> {blog.content}</p>
-                </div>
-            ))}
-            </div>
-        </div>  
-    );
+                    {editIndex === index ? (
+              <div>
+                <label>Title:</label>
+                <input
+                  type="text"
+                  name="title"
+                  value={editBlog.title}
+                  onChange={handleEditChange}
+                />
+                <label>Category:</label>
+                <input
+                  type="text"
+                  name="category"
+                  value={editBlog.category}
+                  onChange={handleEditChange}
+                />
+                <label>Date:</label>
+                <input
+                  type="text"
+                  name="date"
+                  value={editBlog.date}
+                  onChange={handleEditChange}
+                />
+                <label>Content:</label>
+                <textarea
+                  name="content"
+                  value={editBlog.content}
+                  onChange={handleEditChange}
+                />
+                <button onClick={handleEditSave}>Save</button>
+              </div>
+            ) : (
+              <div>
+                <p>
+                  <strong>Title:</strong> {blog.title}
+                </p>
+                <p>
+                  <strong>Category:</strong> {blog.category}
+                </p>
+                <p>
+                  <strong>Date:</strong> {blog.date}
+                </p>
+                <p>
+                  <strong>Content:</strong> {blog.content}
+                </p>
+                <button onClick={() => handleEdit(index)}>Edit</button>
+                
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
+
 
 export default Blog;
