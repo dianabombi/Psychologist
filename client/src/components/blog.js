@@ -47,6 +47,14 @@ function Blog () {
         setEditBlog(null); // Clear editing state
       };
 
+    const handleDelete = (index) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete?");
+        if (confirmDelete) {
+        const updatedBlogs = blogs.filter((_, i) => i !== index);  
+        setBlogs(updatedBlogs);
+        }
+    };
+    
     return (
         <div>   
              <form onSubmit={handleSubmit}>
@@ -143,7 +151,7 @@ function Blog () {
                   <strong>Content:</strong> {blog.content}
                 </p>
                 <button onClick={() => handleEdit(index)}>Edit</button>
-                
+                <button onClick={() => handleDelete(index)}>Delete</button>
               </div>
             )}
           </div>
