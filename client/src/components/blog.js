@@ -1,6 +1,6 @@
 import React from "react";
 import MyButton from "./button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Blog () {
     const [title, setTitle] = useState("");
@@ -10,6 +10,19 @@ function Blog () {
     const [blogs, setBlogs] = useState([]); 
     const [editIndex, setEditIndex] = useState(null);
     const [editBlog, setEditBlog] = useState(null);
+
+    // Load blogs from localStorage on initial render
+    useEffect(() => {
+        const storedBlogs = localStorage.getItem("blogs");
+        if (storedBlogs) {
+            setBlogs(JSON.parse(storedBlogs));
+        }
+    }, []);
+
+    // Save blogs to localStorage whenever the blogs array changes
+    useEffect(() => {
+        localStorage.setItem("blogs", JSON.stringify(blogs));
+    }, [blogs]);
 
     const handleSubmit = (e) => {
         e.preventDefault ();
@@ -54,7 +67,7 @@ function Blog () {
         setBlogs(updatedBlogs);
         }
     };
-    
+
     return (
         <div>   
              <form onSubmit={handleSubmit}>
