@@ -1,5 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
+import axios from 'axios';
 
 import MyButton from './button';
 import NavBar from './navBar';
@@ -20,6 +21,7 @@ function Register() {
     });
 
     const [showPassword, setShowPassword] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
@@ -43,7 +45,7 @@ function Register() {
             }
 
       try {
-        const response = axios.post('http://localhost:5000/register', formInput);
+        const response = axios.post('http://localhost:8000/users/register', formInput);
 
         if (response.data.status === true) {
             alert(response.data.msg || 'Registration successful!');
