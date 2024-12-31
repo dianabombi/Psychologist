@@ -2,6 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 
 import MyButton from './button';
+import NavBar from './navBar';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +10,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function Register() {
     const [formInput, setFormInput] = useState({
-        firstName: "",
+        firstName: '',
         surname: '',
         email: '',
         phone: '',
@@ -52,6 +53,8 @@ function Register() {
     };
 
   return (
+    <div>
+        <NavBar />
     <div className = "register-page">
         <h1>REGISTER</h1>
 
@@ -125,7 +128,8 @@ function Register() {
 
             <MyButton text="SUBMIT" />
         </form>
-    </div>
+     </div>
+</div>
   )
 }
 

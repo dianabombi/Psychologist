@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import NavBar from './navBar';
 
 import MyButton from './button';
 
@@ -13,23 +14,35 @@ function Login() {
     })
 
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
+   
     const handleChange = (e) => {
-        const {name, value} = e.target;
-        setLoginInput ({
+        const { name, value } = e.target;
+        setLoginInput({
             ...loginInput, // spread operator
             [name]: value, // will update all the "names" with "values", which were input
         });
-    }
+    };
+
     const handleSubmit = (e) => {
-        e.preventDefault(); 
-    }
+        e.preventDefault();
+        // Simulate login logic (replace with your actual validation)
+        if (loginInput.email === 'test@example.com' && loginInput.password === 'password123') {
+            setIsLoggedIn(true); // Set login status to true
+        } else {
+            setIsLoggedIn(false); // Optionally, handle invalid login attempts
+            alert('Invalid login credentials'); // Show an error message for invalid login
+        }
+    };
 
     const togglePasswordVisibility = () => {
         setShowPassword (!showPassword)
     };
 
   return (
+    <div>
+        <NavBar />
     <div className="login-page">
         <form onSubmit={handleSubmit} className="login-form">
            
@@ -61,7 +74,10 @@ function Login() {
                 <MyButton 
                     text="SUBMIT" 
                     />
+
+                {isLoggedIn && <p className="success-message">Login successful! Welcome back!</p>}    
             </form>
+        </div>
     </div>
   )
 }
