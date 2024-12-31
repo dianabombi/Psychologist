@@ -32,7 +32,7 @@ function NavBar () {
   }
 
   const handleAboutClick = () => {
-    navigate ("about");
+    navigate ("/about");
   }
   
   return (

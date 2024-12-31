@@ -9,6 +9,7 @@ import Login from "./components/login";
 import Blog from "./components/blog";
 import Dashboard from "./components/Dashboard";
 import About from "./components/about";
+import ProtectedRoute from "./components/protectedroutesComponent";
 
 
 function App() {
@@ -16,13 +17,32 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} /> {/* Homepage Route */}
-        <Route path="/bookings" element={<BookingSystem />} /> {/* Booking page */}
-        <Route path="/register" element={<Register />}  /> {/* Register Route */}
-        <Route path="/login" element={<Login />}  /> {/* Login Route */}
-        <Route path="/blog" element={<Blog />}  /> {/* Blog Route */}
-        <Route path="/admin" element={<Dashboard />}  /> {/* Blog Route */}
-        <Route path="/about" element={<About />}  /> {/* About Route */}
+        <Route path="/" element={<HomePage />} /> 
+
+        <Route 
+          path="/bookings" 
+          element={
+            <ProtectedRoute>
+              <BookingSystem />
+            </ProtectedRoute>
+          } 
+          /> 
+
+        <Route path="/register" element={<Register />}  /> 
+        <Route path="/login" element={<Login />}  /> 
+
+        <Route path="/blog" element={<Blog />}  /> 
+
+        <Route 
+          path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }  
+          /> 
+
+        <Route path="/about" element={<About />}  /> 
       </Routes>
     </BrowserRouter>
   );
