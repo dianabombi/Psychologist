@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import { useState } from 'react';
 import NavBar from './navBar';
+import { useNavigate } from 'react-router-dom';
 
 import MyButton from './button';
 
@@ -18,6 +19,7 @@ function Login() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [errorMessage, setErrorMessage] = useState(''); 
     const [successMessage, setSuccessMessage] = useState('');
+    const navigate = useNavigate("");
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -30,13 +32,14 @@ function Login() {
    const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:5000/login', loginInput);
+            const response = await axios.post('http://localhost:8000/users/login', loginInput);
             if (response.data.token) {
                 setIsLoggedIn(true);
                 setSuccessMessage(response.data.msg); // Show success message
                 setErrorMessage('');
                 // Save the token in localStorage for future requests
                 localStorage.setItem('authToken', response.data.token);
+                navigate("/dashboard");
             } else {
                 setIsLoggedIn(false);
                 setErrorMessage(response.data.msg); // Show error message from backend
@@ -51,6 +54,8 @@ function Login() {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
+    
 
     return (
         <div>

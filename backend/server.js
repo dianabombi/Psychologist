@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 const cors = require("cors");
-const connection = require ("./databaseConnection"); // initialize app
+const connection = require ("./databaseConnection"); 
 
 const userRoutes = require ("./routes/user.routes");
 const blogRoutes = require ("./routes/blog.routes");
