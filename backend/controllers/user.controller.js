@@ -5,27 +5,39 @@ const jwt = require ("jsonwebtoken");
 // _____ REGISTER _____
 const register = async (req, res) => {
     try {
-        let {firstName, surname, email, phone, password, password2} = req.body;
-        if (!firstName || !surname || !email || !phone || !password || !password2)
-        return res.send ({msg: "All information are required in process of registration", status: false});
+        const { firstName, surname, email, phone, password, password2 } = req.body;
 
-        let oldUser = await User.findOne({email});
-        if (oldUser)
-        return res.send({msg: "User is already registered, please login or sign up with new email."});
-        let hashedPassword = await bcrypt.hash(password, +process.env.SALT_ROUND);
+        if (!firstName || !surname || !email || !phone || !password || !password2) {
+            return res.status(400).send({ msg: "Please fill out all required fields.", status: false });
+        }
+
+        if (password !== password2) {
+            return res.status(400).send({ msg: "Passwords do not match.", status: false });
+        }
+
+        const oldUser = await User.findOne({ email });
+        if (oldUser) {
+            return res.status(400).send({ msg: "User is already registered, please login or sign up with a different email.", status: false });
+        }
+
+        const saltRounds = parseInt(process.env.SALT_ROUND, 10) || 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
         await User.create({
             firstName,
             surname,
             email,
             phone,
             password: hashedPassword,
-            password2: hashedPassword
         });
-            return res.send({msg: "Registered successfully", status: true});
-        } catch (error) {  
-            return res.status(500).send({msg:"Internal server error", error, status: false})
+
+        return res.status(201).send({ msg: "Registered successfully", status: true });
+    } catch (error) {
+        console.error("Error during registration:", error);
+        return res.status(500).send({ msg: "Internal server error", error, status: false });
     }
 };
+
 
 // _____ LOGIN _____
 const login = async (req, res) => {

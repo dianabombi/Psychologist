@@ -6,6 +6,7 @@ import NavBar from './navBar';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 
 function Register() {
@@ -19,6 +20,7 @@ function Register() {
     });
 
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate();
 
     const togglePasswordVisibility = () => {
         setShowPassword (!showPassword)
@@ -27,7 +29,7 @@ function Register() {
     const handleChange = (e) => {
         const {name, value} = e.target;
         setFormInput ({
-            ...formInput, // spread operator
+            ...formInput,
             [name]: value, // will update all the "names" with "values", which were input
         });
     };
@@ -35,22 +37,34 @@ function Register() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-    if (formInput.password !== formInput.password2) {
-        alert('Passwords do not match!');
-        return;
+        if (formInput.password !== formInput.password2) {
+            alert('Passwords do not match!');
+            return;
+            }
+
+      try {
+        const response = axios.post('http://localhost:5000/register', formInput);
+
+        if (response.data.status === true) {
+            alert(response.data.msg || 'Registration successful!');
+            setFormInput({
+                firstName: '',
+                surname: '',
+                email: '',
+                phone: '',
+                password: '',
+                password2: '',
+            });
+            navigate('/login');
+        } else {
+            alert(response.data.msg || 'Registration failed. Please check your inputs.');
         }
-
-    alert('Registration successful!');
-
-    setFormInput({
-        firstName: '',
-        surname: '',
-        email: '',
-        phone: '',
-        password: '',
-        password2: '',
-      });
-    };
+    
+      } catch (error) {
+        console.error(error);
+        setErrorMessage('An error occurred. Please try again later.');
+    }
+};
 
   return (
     <div>

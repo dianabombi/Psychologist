@@ -4,18 +4,9 @@ const userSchema = new mongoose.Schema({
     firstName: {type: String, required: true},
     surname: {type: String, required: true},
     email: {type: String, required: true, lowerCase: true, unique: true},
-    phone: {
-        type: Number,
-        validate: {
-            validator: function (v) {
-                return /^\d+$/.test(v.toString());
-            },
-            message: '{VALUE} is not a valid phone number!'
-        }
-    },
+    phone: {ype: String, required: true},
     password: {type: String, required: true},
-    password2: {type: String, required: true}, // confirmation of password - has to bee same as previous field
-    role: {type: String, enum: ["User", "Admin"], default: "User"}
+    // role: {type: String, enum: ["User", "Admin"], default: "User"}
 });
 
 const User = mongoose.model('User', userSchema); // model always starts with capital letter and singular
