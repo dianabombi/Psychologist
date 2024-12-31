@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import MyButton from "../components/button";
 import { useNavigate} from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +9,7 @@ function NavBar () {
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  // const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   const handleHomeClick = () => {
     navigate("/");
@@ -40,8 +39,7 @@ function NavBar () {
    
     <div className="navBar">
    
-     <ul className="listBar">
-
+    <ul className="listBar">
         <FontAwesomeIcon 
         icon={faHouse}
         onClick={handleHomeClick}
@@ -51,13 +49,11 @@ function NavBar () {
                 <li className="navItem" onClick={handleRegisterClick}>Register</li>
               
                 <li
-                    className="navItem dropdown"
-                    onMouseEnter={toggleDropdown}
-                    onMouseLeave={toggleDropdown}
+                    className="fixed-panel"
                 >
                     Services
                     {dropdownOpen && (
-                        <ul className="dropdownMenu">
+                        <ul className="fixed-menu">
                             <li className="dropdownItem">Therapy</li>
                             <li className="dropdownItem">Workshops</li>
                             <li className="dropdownItem" onClick={handleBookingClick}>Book an appointment</li>
