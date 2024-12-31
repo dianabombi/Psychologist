@@ -56,10 +56,9 @@ function Register() {
     <div>
         <NavBar />
     <div className = "register-page">
-        <h1>REGISTER</h1>
-
+       
         <form onSubmit={handleSubmit} className="register-form">
-
+        <h1>REGISTER</h1>
             <label htmlFor="firstName">First Name</label>
             <input 
                 type="text" 
