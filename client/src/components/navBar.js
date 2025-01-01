@@ -45,7 +45,7 @@ function NavBar () {
         icon={faHouse}
         onClick={handleHomeClick}
         />
-                <li className="navItem" onClick={handleAboutClick}>About</li>
+                <li className="navItem" onClick={handleAboutClick}>About Me</li>
                 <li
                     className="fixed-panel" onClick={toggleDropdown}
                 >

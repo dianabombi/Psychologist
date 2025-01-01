@@ -74,6 +74,7 @@ function Blog () {
       <div className="blog-page">
              <form onSubmit={handleSubmit} className="blog-form">
 
+            <h2>Be our contributor</h2>
              <label htmlFor="blog-title">Title</label>
                 <input
                     type="text"
