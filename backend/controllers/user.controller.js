@@ -31,6 +31,12 @@ const register = async (req, res) => {
             password: hashedPassword,
         });
 
+        // Send auto-responder email = NODEMAILER implementation
+
+        const subject = "Welcome to [Your App Name]!";
+        const text = `Hello ${firstName},\n\nThank you for registering at [Your App Name]. We are excited to have you!\n\nBest regards,\n[Your App Team]`;
+        await sendEmail(email, subject, text);
+
         return res.status(201).send({ msg: "Registered successfully", status: true });
     } catch (error) {
         console.error("Error during registration:", error);

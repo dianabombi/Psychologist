@@ -82,12 +82,14 @@ function Login() {
                         value={loginInput.password}
                         onChange={handleChange}
                         required
+                        
                     />
-                    <button type="button" onClick={togglePasswordVisibility}>
+                   
+                    <button className="password-eye" type="button" onClick={togglePasswordVisibility}>
                         {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                     </button>
 
-                    <MyButton text="SUBMIT" />
+                    <button className="login-button">SUBMIT</button>
 
                     {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Show error message */}
                     {successMessage && <p className="success-message">{successMessage}</p>}

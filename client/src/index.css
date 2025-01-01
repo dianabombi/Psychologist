@@ -51,6 +51,7 @@
     margin: 0;
 }
 
+
 /* REGISTER */
 
 .register-page {
@@ -84,6 +85,26 @@
     border: none;
     border-radius: 3px;
     padding: 0.7rem;
+}
+.register-button, .login-button {
+    border: none;
+    border-radius: 3px;
+    width: 50%;
+    height: 2rem;
+    align-items: center;
+    background-color: #3E5879;
+    color: white;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.register-button:hover, .login-button:hover {
+    background-color: #213555; 
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 4px 8px 0px, rgba(14, 30, 37, 0.32) 0px 4px 20px 0px; 
+}
+
+.password-eye {
+    border: none;
+    background: transparent;
 }
 
 /* NAV BAR */

@@ -124,7 +124,7 @@ function Register() {
                 onChange ={handleChange}
                 required
                 />
-                <button type="button" onClick={togglePasswordVisibility}>
+                <button className="password-eye" type="button" onClick={togglePasswordVisibility}>
                     {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye} />}
                 </button>
 
@@ -137,11 +137,11 @@ function Register() {
                 onChange ={handleChange}
                 required
                 />
-            <button type="button" onClick={togglePasswordVisibility}>
+            <button className="password-eye" type="button" onClick={togglePasswordVisibility}>
                 {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye} />}
             </button> 
 
-            <MyButton text="SUBMIT" />
+            <button className="register-button">SUBMIT</button>
         </form>
      </div>
 </div>
