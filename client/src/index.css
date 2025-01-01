@@ -39,6 +39,7 @@
     font-size: 1.2rem;
     background-color: #F5EFE7;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    margin: 10rem;
 }
 
 /* LOGIN */
@@ -54,7 +55,7 @@
 
 /* REGISTER */
 
-.register-page {
+.register-page, .blog-page {
     display: flex;
     background-color: #F5EFE7;
     flex-direction: column;
@@ -64,7 +65,7 @@
     margin: 0;
 }
 
-.register-form, .login-form {
+.register-form, .login-form, .blog-form {
     display: flex;
     flex-direction: column; 
     gap: 15px; 
@@ -86,7 +87,14 @@
     border-radius: 3px;
     padding: 0.7rem;
 }
-.register-button, .login-button {
+
+.blog-form input {
+    border: none;
+    border-radius: 3px;
+    padding: 0.7rem;
+}
+
+.register-button, .login-button, .button-blog {
     border: none;
     border-radius: 3px;
     width: 50%;
@@ -97,7 +105,7 @@
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
 
-.register-button:hover, .login-button:hover {
+.register-button:hover, .login-button:hover, .button-blog:hover {
     background-color: #213555; 
     box-shadow: rgba(14, 30, 37, 0.12) 0px 4px 8px 0px, rgba(14, 30, 37, 0.32) 0px 4px 20px 0px; 
 }
@@ -109,10 +117,8 @@
 
 /* NAV BAR */
 
-.fixed-panel {
-    position: relative;
-}
-.fixed-menu {
+
+/* .fixed-menu {
     display: flex; 
     position: fixed;
     top: 100%; 
@@ -124,7 +130,7 @@
     width: auto;
     min-width: 200px; 
     z-index: 1000;
-}
+} */
 
 .listBar {
     display: flex;
@@ -133,15 +139,14 @@
     margin: 1rem;
 }
 
-
-/* .dropdownItem {
+.dropdownItem {
     list-style: none;
 }
 
 .dropdownMenu {
     background-color: #213555;
     padding: 1rem;
-} */
+}
 
 /* ABOUT PAGE*/
 
@@ -161,4 +166,13 @@
     display: flex;
     width: 300px;
     padding: 2rem;
+}
+
+/* HOMEPAGE */
+
+.flowers-image {
+  width: 600px;  
+  height: auto;
+  border-radius: 10px;
+  margin:  2rem;
 }

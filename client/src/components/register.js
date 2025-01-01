@@ -44,7 +44,7 @@ function Register() {
             }
 
       try {
-        const response = axios.post('http://localhost:8000/api/register', formInput);
+        const response = axios.post('http://localhost:8000/users/register', formInput);
 
         if (response.data.status === true) {
             alert(response.data.msg || 'Registration successful!');

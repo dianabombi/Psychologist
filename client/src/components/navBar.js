@@ -9,7 +9,7 @@ function NavBar () {
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  // const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
+  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   const handleHomeClick = () => {
     navigate("/");
@@ -34,6 +34,7 @@ function NavBar () {
   const handleAboutClick = () => {
     navigate ("/about");
   }
+
   
   return (
    
@@ -45,15 +46,12 @@ function NavBar () {
         onClick={handleHomeClick}
         />
                 <li className="navItem" onClick={handleAboutClick}>About</li>
-                <li className="navItem" onClick={handleLoginClick}>Login</li>
-                <li className="navItem" onClick={handleRegisterClick}>Register</li>
-              
                 <li
-                    className="fixed-panel"
+                    className="fixed-panel" onClick={toggleDropdown}
                 >
                     Services
                     {dropdownOpen && (
-                        <ul className="fixed-menu">
+                        <ul className="dropdownMenu">
                             <li className="dropdownItem">Therapy</li>
                             <li className="dropdownItem">Workshops</li>
                             <li className="dropdownItem" onClick={handleBookingClick}>Book an appointment</li>
@@ -62,6 +60,8 @@ function NavBar () {
                         </ul>
                     )}
                 </li>
+                <li className="navItem" onClick={handleLoginClick}>Login</li>
+                <li className="navItem" onClick={handleRegisterClick}>Register</li>
             </ul>   
         </div>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import MyButton from "./button";
+import NavBar from "./navBar";
 import { useState, useEffect } from "react";
 
 function Blog () {
@@ -69,8 +69,10 @@ function Blog () {
     };
 
     return (
-        <div>   
-             <form onSubmit={handleSubmit}>
+      <div>
+      < NavBar />
+      <div className="blog-page">
+             <form onSubmit={handleSubmit} className="blog-form">
 
              <label htmlFor="blog-title">Title</label>
                 <input
@@ -111,7 +113,7 @@ function Blog () {
                     onChange={(e) => setContent(e.target.value)}
                     placeholder="Write your article here"
                 />   
-                   <MyButton text="SAVE"  onClick={handleSave}/>
+                  <button className="button-blog" onClick={handleSave}>SAVE</button>
             </form>
 
             <div>
@@ -170,6 +172,7 @@ function Blog () {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

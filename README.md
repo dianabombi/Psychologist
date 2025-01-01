@@ -28,7 +28,7 @@ This section is accessible only for specific User
 
 __E-MAIL RESPONDER__
 
-Nodemailer, with Outlook mail.
+Mailgun, with Outlook mail.
 
 For testing purposes used Ethereal Email.
 
