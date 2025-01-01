@@ -26,6 +26,12 @@ __DIARY SECTION__
 Diary is the section built by daily notes, by specific User. 
 This section is accessible only for specific User
 
+__E-MAIL RESPONDER__
+
+Nodemailer, with Outlook mail.
+
+For testing purposes used Ethereal Email.
+
 
 
 

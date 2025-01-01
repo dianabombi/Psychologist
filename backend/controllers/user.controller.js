@@ -1,6 +1,8 @@
 const User = require ("../models/user");
 const bcrypt = require ("bcrypt");
 const jwt = require ("jsonwebtoken");
+const sendEmail = require('./mailgun');
+
 
 // _____ REGISTER _____
 const register = async (req, res) => {
@@ -10,6 +12,10 @@ const register = async (req, res) => {
         if (!firstName || !surname || !email || !phone || !password || !password2) {
             return res.status(400).send({ msg: "Please fill out all required fields.", status: false });
         }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            return res.status(400).send({ msg: "Invalid email format.", status: false });
+        } // Regex validation of email
 
         if (password !== password2) {
             return res.status(400).send({ msg: "Passwords do not match.", status: false });
@@ -21,6 +27,7 @@ const register = async (req, res) => {
         }
 
         const saltRounds = parseInt(process.env.SALT_ROUND, 10) || 10;
+        if (!process.env.SALT_ROUND) console.warn("SALT_ROUND not set. Defaulting to 10.");
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
         await User.create({
@@ -31,10 +38,9 @@ const register = async (req, res) => {
             password: hashedPassword,
         });
 
-        // Send auto-responder email = NODEMAILER implementation
-
-        const subject = "Welcome to [Your App Name]!";
-        const text = `Hello ${firstName},\n\nThank you for registering at [Your App Name]. We are excited to have you!\n\nBest regards,\n[Your App Team]`;
+        // Welcome email = Mailgun integration
+        const subject = "Welcome to Your App!";
+        const text = `Hello ${firstName},\n\nThank you for registering. We're excited to have you!\n\nBest regards,\nYour App Team`;
         await sendEmail(email, subject, text);
 
         return res.status(201).send({ msg: "Registered successfully", status: true });

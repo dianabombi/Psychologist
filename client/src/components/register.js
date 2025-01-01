@@ -2,7 +2,6 @@ import React from 'react';
 import {useState} from 'react';
 import axios from 'axios';
 
-import MyButton from './button';
 import NavBar from './navBar';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -108,7 +107,7 @@ function Register() {
             <label htmlFor="phone">Phone Number</label>
             <input 
                 type="text" 
-                placeholder="+30**********"
+                placeholder="690*******"
                 name = "phone"
                 value = {formInput.phone}
                 onChange ={handleChange}
