@@ -195,3 +195,29 @@
   border-radius: 10px;
   margin:  2rem;
 }
+
+/* DASHBOARD */
+
+.admin-dashboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-dashboard h1 {
+    margin-top: 7rem !important;
+}
+
+.admin-dashboard button {
+    margin: 1rem;
+}
+
+/* CALENDAR PAGE */
+
+.calendar-page {
+    display: flex;
+    flex-direction: column;
+}
+
+.calendar-page h1 {
+    margin-top: 7rem !important;
+}

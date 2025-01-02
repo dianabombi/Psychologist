@@ -1,0 +1,34 @@
+import React, { useEffect, useState } from 'react';
+import Calendar from './calendar';
+import axios from 'axios';
+import NavBar from './navBar';
+
+const CalendarPage = () => {
+    const [sessions, setSessions] = useState([]);
+
+    useEffect(() => {
+        // Fetch sessions from the backend
+        const fetchSessions = async () => {
+            try {
+                const response = await axios.get('http://localhost:8000/api/sessions'); 
+                setSessions(response.data);
+            } catch (error) {
+                console.error('Error fetching sessions:', error);
+            }
+        };
+
+        fetchSessions();
+    }, []);
+
+    return (
+        <div>
+            <NavBar />
+            <div className='calendar-page'>
+                <h1>Calendar of Sessions</h1>
+                <Calendar sessions={sessions} />
+            </div>
+        </div>
+    );
+};
+
+export default CalendarPage;

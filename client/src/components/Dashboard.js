@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import NavBar from './navBar';
 
 function Dashboard() {
 
@@ -12,7 +13,7 @@ function Dashboard() {
   const navigate = useNavigate ();
 
   const redirectCalendar = () => {
-    navigate ("/bookingCalendar");
+    navigate ("/calendar"); //bookingCalendar
   }
 
   const confirmBooking = () => {
@@ -25,6 +26,8 @@ function Dashboard() {
 
   return (
     <div>
+      < NavBar />
+      <div className='admin-dashboard'>
         <h1>Welcome in Admin Dashboard, {user.name}!</h1>
         {user.role === "admin" && (
             <div>
@@ -43,6 +46,7 @@ function Dashboard() {
         {user.role === 'user' && (
             <p>You have limited access as a User.</p>
           )}
+    </div>
     </div>
   )
 }

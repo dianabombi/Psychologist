@@ -10,6 +10,7 @@ import Blog from "./components/blog";
 import Dashboard from "./components/Dashboard";
 import About from "./components/about";
 import ProtectedRoute from "./components/protectedroutesComponent";
+import CalendarPage from "./components/calendarPage";
 
 
 function App() {
@@ -22,20 +23,16 @@ function App() {
         <Route 
           path="/bookings" 
           element={
-            <ProtectedRoute>
               <BookingSystem />
-            </ProtectedRoute>
           } 
           /> 
 
         <Route path="/register" element={<Register />}  /> 
         <Route path="/login" element={<Login />}  /> 
-
         <Route path="/blog" element={<Blog />}  /> 
-
         <Route path="/dashboard" element={<Dashboard />} />
-
         <Route path="/about" element={<About />}  /> 
+        <Route path="/calendar" element={<CalendarPage />} />
       </Routes>
     </BrowserRouter>
   );
