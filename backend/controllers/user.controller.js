@@ -13,10 +13,6 @@ const register = async (req, res) => {
             return res.status(400).send({ msg: "Please fill out all required fields.", status: false });
         }
 
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            return res.status(400).send({ msg: "Invalid email format.", status: false });
-        } // Regex validation of email
-
         if (password !== password2) {
             return res.status(400).send({ msg: "Passwords do not match.", status: false });
         }
@@ -36,11 +32,12 @@ const register = async (req, res) => {
             email,
             phone,
             password: hashedPassword,
+            password2
         });
 
         // Welcome email = Mailgun integration
         const subject = "Welcome to Your App!";
-        const text = `Hello ${firstName},\n\nThank you for registering. We're excited to have you!\n\nBest regards,\nYour App Team`;
+        const text = `Hello ${firstName},\n\nThank you for registering in Safe Space Psychology. We're excited to have you!\n\nBest regards,\nYour App Team`;
         await sendEmail(email, subject, text);
 
         return res.status(201).send({ msg: "Registered successfully", status: true });
