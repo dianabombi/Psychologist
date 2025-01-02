@@ -35,37 +35,39 @@ function Register() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
+        
+        // Check if passwords match
         if (formInput.password !== formInput.password2) {
             alert('Passwords do not match!');
             return;
-            }
-
-      try {
-        const response = axios.post('http://localhost:8000/users/register', formInput);
-
-        if (response.data.status === true) {
-            alert(response.data.msg || 'Registration successful!');
-            setFormInput({
-                firstName: '',
-                surname: '',
-                email: '',
-                phone: '',
-                password: '',
-                password2: '',
-            });
-            navigate('/login');
-        } else {
-            alert(response.data.msg || 'Registration failed. Please check your inputs.');
         }
     
-      } catch (error) {
-        console.error(error);
-        setErrorMessage('An error occurred. Please try again later.');
-    }
-};
+        try {
+            const response = await axios.post('http://localhost:8000/users/register', formInput);
+    
+            if (response.data.status === true) {
+                alert(response.data.msg || 'Registration successful!');
+                setFormInput({
+                    firstName: '',
+                    surname: '',
+                    email: '',
+                    phone: '',
+                    password: '',
+                    password2: '',
+                });
+                navigate('/login');
+            } else {
+                alert(response.data.msg || 'Registration failed. Please check your inputs.');
+            }
+        
+        } catch (error) {
+            console.error(error);
+            setErrorMessage('An error occurred. Please try again later.');
+        }
+    };
+    
 
   return (
     <div>
@@ -140,7 +142,8 @@ function Register() {
                 {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye} />}
             </button> 
 
-            <button className="register-button">SUBMIT</button>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            <button className="register-button" type="submit">SUBMIT</button>
         </form>
      </div>
 </div>

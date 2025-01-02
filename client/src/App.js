@@ -33,14 +33,7 @@ function App() {
 
         <Route path="/blog" element={<Blog />}  /> 
 
-        <Route 
-          path="/dashboard" 
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }  
-          /> 
+        <Route path="/dashboard" element={<Dashboard />} />
 
         <Route path="/about" element={<About />}  /> 
       </Routes>

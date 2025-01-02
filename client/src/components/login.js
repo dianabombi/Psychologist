@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
-import { useState } from 'react';
-import NavBar from './navBar';
 import { useNavigate } from 'react-router-dom';
-
-import MyButton from './button';
+import NavBar from './navBar';
+import MyButton from './button'; // Optional if you're not using MyButton
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -19,7 +17,7 @@ function Login() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [errorMessage, setErrorMessage] = useState(''); 
     const [successMessage, setSuccessMessage] = useState('');
-    const navigate = useNavigate("");
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,24 +27,25 @@ function Login() {
         });
     };
 
-   const handleSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log('Form submitted'); 
         try {
             const response = await axios.post('http://localhost:8000/users/login', loginInput);
             if (response.data.token) {
                 setIsLoggedIn(true);
-                setSuccessMessage(response.data.msg); // Show success message
+                setSuccessMessage(response.data.msg);
                 setErrorMessage('');
-                // Save the token in localStorage for future requests
                 localStorage.setItem('authToken', response.data.token);
+                console.log("Redirecting to dashboard...");
                 navigate("/dashboard");
             } else {
                 setIsLoggedIn(false);
-                setErrorMessage(response.data.msg); // Show error message from backend
+                setErrorMessage(response.data.msg);
                 setSuccessMessage('');
             }
         } catch (error) {
-            console.error(error);
+            console.error('Login error:', error.response || error.message);
             setErrorMessage('An error occurred. Please try again later.');
         }
     };
@@ -54,8 +53,6 @@ function Login() {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-
-    
 
     return (
         <div>
@@ -66,8 +63,8 @@ function Login() {
 
                     <label htmlFor="email">E-mail</label>
                     <input
-                        type="text"
-                        placeholder="registered e-mail"
+                        type="email"
+                        placeholder="Registered e-mail"
                         name="email"
                         value={loginInput.email}
                         onChange={handleChange}
@@ -77,21 +74,20 @@ function Login() {
                     <label htmlFor="password">Password</label>
                     <input
                         type={showPassword ? 'text' : 'password'}
-                        placeholder="password"
+                        placeholder="Password"
                         name="password"
                         value={loginInput.password}
                         onChange={handleChange}
                         required
-                        
                     />
-                   
+
                     <button className="password-eye" type="button" onClick={togglePasswordVisibility}>
                         {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                     </button>
 
-                    <button className="login-button">SUBMIT</button>
+                    <button className="login-button" type="submit">SUBMIT</button>
 
-                    {errorMessage && <p className="error-message">{errorMessage}</p>} {/* Show error message */}
+                    {errorMessage && <p className="error-message">{errorMessage}</p>}
                     {successMessage && <p className="success-message">{successMessage}</p>}
                 </form>
             </div>

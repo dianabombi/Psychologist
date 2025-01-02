@@ -7,9 +7,12 @@ const sendEmail = require('./mailgun');
 // _____ REGISTER _____
 const register = async (req, res) => {
     try {
-        const { firstName, surname, email, phone, password, password2 } = req.body;
+        const { firstName, surname, email, phone, password, password2} = req.body;
+        console.log("Request Body:", req.body);
+
 
         if (!firstName || !surname || !email || !phone || !password || !password2) {
+            console.error("Missing Fields:", { firstName, surname, email, phone, password, password2});
             return res.status(400).send({ msg: "Please fill out all required fields.", status: false });
         }
 
@@ -19,25 +22,30 @@ const register = async (req, res) => {
 
         const oldUser = await User.findOne({ email });
         if (oldUser) {
-            return res.status(400).send({ msg: "User is already registered, please login or sign up with a different email.", status: false });
+            return res.status(400).send({ 
+                msg: "User is already registered, please login or sign up with a different email.", 
+                status: false 
+            });
         }
 
         const saltRounds = parseInt(process.env.SALT_ROUND, 10) || 10;
         if (!process.env.SALT_ROUND) console.warn("SALT_ROUND not set. Defaulting to 10.");
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        await User.create({
+        let payload = {
             firstName,
             surname,
             email,
             phone,
-            password: hashedPassword,
-            password2
-        });
+            password: hashedPassword, 
+            password2: hashedPassword
+        };
 
-        // Welcome email = Mailgun integration
-        const subject = "Welcome to Your App!";
-        const text = `Hello ${firstName},\n\nThank you for registering in Safe Space Psychology. We're excited to have you!\n\nBest regards,\nYour App Team`;
+        await User.create(payload);
+
+        const subject = "Welcome to Safe Space Psychology!";
+        const text = `Hello ${firstName},\n\nThank you for registering in Safe Space Psychology. We're excited to have you!\n\nBest regards,\nThe Safe Space Psychology Team`;
+
         await sendEmail(email, subject, text);
 
         return res.status(201).send({ msg: "Registered successfully", status: true });
@@ -46,6 +54,7 @@ const register = async (req, res) => {
         return res.status(500).send({ msg: "Internal server error", error, status: false });
     }
 };
+
 
 
 // _____ LOGIN _____
@@ -67,12 +76,13 @@ const login = async (req, res) => {
 
         // after verification of password validity, token needs to be generated 
 
-        let payload = {
+        const payload = {
             userId: doesUserExist._id,
             email: doesUserExist.email,
-        }
+        };
 
-        let token = await jwt.sign(payload, process.env.SECRET_KEY);
+        let token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
+
         return res.send({msg: "Login successfully", token});
     } catch (error) {
         return res.status(500).send({msg:"Internal server error", error});
