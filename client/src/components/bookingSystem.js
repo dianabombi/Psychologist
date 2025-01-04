@@ -19,7 +19,7 @@ function BookingSystem() {
     <div> 
       <NavBar />
       <div className="booking-page">
-      <h1 >Booking System</h1>
+      <h1 >Book your session here:</h1>
       
       <DatePicker
         selected={selectedDate}
