@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+
 const {
     register,
     login,
@@ -10,7 +11,7 @@ const {
 } = require("../controllers/user.controller");
 
 // User routes
-router.post("/register", register);
+router.post("/:id", register);
 router.post("/login", login);
 router.get("/:id", getUserById);
 router.put("/:id", updateUser);

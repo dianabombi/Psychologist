@@ -1,23 +1,17 @@
 const User = require ("../models/user");
 const bcrypt = require ("bcrypt");
 const jwt = require ("jsonwebtoken");
-const sendEmail = require('./mailgun');
+const sendEmail = require('./mailgun.js');
 
 
 // _____ REGISTER _____
 const register = async (req, res) => {
     try {
-        const { firstName, surname, email, phone, password, password2} = req.body;
-        console.log("Request Body:", req.body);
+        const { firstName, surname, email, phone, password } = req.body;
 
-
-        if (!firstName || !surname || !email || !phone || !password || !password2) {
-            console.error("Missing Fields:", { firstName, surname, email, phone, password, password2});
+        if (!firstName || !surname || !email || !phone || !password) {
+            console.error("Missing Fields:", { firstName, surname, email, phone });
             return res.status(400).send({ msg: "Please fill out all required fields.", status: false });
-        }
-
-        if (password !== password2) {
-            return res.status(400).send({ msg: "Passwords do not match.", status: false });
         }
 
         const oldUser = await User.findOne({ email });
@@ -28,7 +22,7 @@ const register = async (req, res) => {
             });
         }
 
-        const saltRounds = parseInt(process.env.SALT_ROUND, 10) || 10;
+        const saltRounds = Number.isInteger(parseInt(process.env.SALT_ROUND, 10)) ? parseInt(process.env.SALT_ROUND, 10) : 10;
         if (!process.env.SALT_ROUND) console.warn("SALT_ROUND not set. Defaulting to 10.");
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
@@ -37,25 +31,16 @@ const register = async (req, res) => {
             surname,
             email,
             phone,
-            password: hashedPassword, 
-            password2: hashedPassword
+            password: hashedPassword
         };
 
         await User.create(payload);
-
-        const subject = "Welcome to Safe Space Psychology!";
-        const text = `Hello ${firstName},\n\nThank you for registering in Safe Space Psychology. We're excited to have you!\n\nBest regards,\nThe Safe Space Psychology Team`;
-
-        await sendEmail(email, subject, text);
-
         return res.status(201).send({ msg: "Registered successfully", status: true });
     } catch (error) {
-        console.error("Error during registration:", error);
-        return res.status(500).send({ msg: "Internal server error", error, status: false });
+        console.error("Error during registration:", error.message);
+        return res.status(500).send({ msg: "Internal server error", status: false });
     }
 };
-
-
 
 // _____ LOGIN _____
 const login = async (req, res) => {

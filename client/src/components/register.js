@@ -31,43 +31,40 @@ function Register() {
         const {name, value} = e.target;
         setFormInput ({
             ...formInput,
-            [name]: value, // will update all the "names" with "values", which were input
+            [name]: value, 
         });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        // Check if passwords match
-        if (formInput.password !== formInput.password2) {
-            alert('Passwords do not match!');
+    
+        if (!formInput.firstName || !formInput.surname || !formInput.email || !formInput.phone || !formInput.password) {
+            console.log(formInput)
+            alert('Please fill in all fields.');
             return;
         }
     
         try {
             const response = await axios.post('http://localhost:8000/users/register', formInput);
-    
             if (response.data.status === true) {
-                alert(response.data.msg || 'Registration successful!');
+                
+                alert('Registration successful!');
                 setFormInput({
                     firstName: '',
                     surname: '',
                     email: '',
                     phone: '',
-                    password: '',
-                    password2: '',
+                    password: ''
                 });
                 navigate('/login');
             } else {
                 alert(response.data.msg || 'Registration failed. Please check your inputs.');
             }
-        
         } catch (error) {
-            console.error(error);
             setErrorMessage('An error occurred. Please try again later.');
         }
     };
-    
+
 
   return (
     <div>
@@ -128,19 +125,6 @@ function Register() {
                 <button className="password-eye" type="button" onClick={togglePasswordVisibility}>
                     {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye} />}
                 </button>
-
-            <label htmlFor="password2">Confirm Password</label>
-            <input 
-                type={showPassword ? 'text' : 'password'}
-                placeholder="confirm password"
-                name = "password2"
-                value ={formInput.password2}
-                onChange ={handleChange}
-                required
-                />
-            <button className="password-eye" type="button" onClick={togglePasswordVisibility}>
-                {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye} />}
-            </button> 
 
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <button className="register-button" type="submit">SUBMIT</button>
