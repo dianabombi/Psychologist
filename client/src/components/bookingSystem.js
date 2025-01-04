@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import NavBar from './navBar';
 
 function BookingSystem() {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -15,8 +16,11 @@ function BookingSystem() {
   };
 
   return (
-    <div>
-      <h1>Booking System</h1>
+    <div> 
+      <NavBar />
+      <div className="booking-page">
+      <h1 >Booking System</h1>
+      
       <DatePicker
         selected={selectedDate}
         onChange={(date) => setSelectedDate(date)}
@@ -37,6 +41,7 @@ function BookingSystem() {
           <BookingForm onSubmit={handleBookingSubmit} />
         </div>
       )}
+
       {bookingDetails && (
         <div>
           <h2>Booking Confirmed</h2>
@@ -48,6 +53,7 @@ function BookingSystem() {
           </p>
         </div>
       )}
+    </div>
     </div>
   );
 }

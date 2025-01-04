@@ -4,14 +4,13 @@ import NavBar from './navBar';
 function About() {
   return (
   <div>
+    < NavBar />
     <div className="about-page">
        <img 
         src="BaraPsychologist.jpg" 
         alt="Psychologist" 
         className="image-psychologist"
       />
-
-      < NavBar />
 
 <div className="container-text">
       <p className="text-about">I am Barbora, psychologist with 6 years of practice.

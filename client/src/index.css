@@ -25,9 +25,7 @@
     width: 100%;
     height: 60px;
     align-content: center;
-    position: absolute;
 }
-
 
 
 .landing-text {
@@ -182,11 +180,6 @@
     font-family: 'Pacifico', cursive;
 }
 
-/* Container for text and buttons in About Me page*/
-.container-text {
-
-}
-
 /* HOMEPAGE */
 
 .flowers-image {
@@ -220,9 +213,12 @@
 }
 
 .calendar-page h1 {
-    margin-top: 7rem !important;
+    margin-top: 4rem !important;
+    padding: 2rem;
 }
 
-.full-calendar {
-    margin: 10rem;
+/* BOOKING PAGE */
+
+.booking-page {
+    margin: 7rem;
 }
