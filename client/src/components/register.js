@@ -11,12 +11,12 @@ import { useNavigate } from 'react-router-dom';
 
 function Register() {
     const [formInput, setFormInput] = useState({
-        firstName: '',
-        surname: '',
-        email: '',
-        phone: '',
-        password: '',
-        password2: ''
+        firstName: "",
+        surname: "",
+        email: "",
+        phone: "",
+        password: "",
+        password2: ""
     });
 
     const [showPassword, setShowPassword] = useState(false);
@@ -39,14 +39,14 @@ function Register() {
         e.preventDefault();
     
         if (!formInput.firstName || !formInput.surname || !formInput.email || !formInput.phone || !formInput.password) {
-            console.log(formInput)
             alert('Please fill in all fields.');
             return;
         }
     
         try {
             const response = await axios.post('http://localhost:8000/users/register', formInput);
-            
+            console.log("Registration Success:", response.data);
+
             if (response.data.status === true) {
                 alert('Registration successful!');
                 setFormInput({

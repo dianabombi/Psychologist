@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios");
+const verifyToken = require("../middleware/auth")
 
 const {
     register,
@@ -11,10 +12,11 @@ const {
 } = require("../controllers/user.controller");
 
 // User routes
-router.post("/:id", register);
+router.post("/register", register);
 router.post("/login", login);
-router.get("/:id", getUserById);
-router.put("/:id", updateUser);
-router.delete("/:id", deleteUser);
+
+router.get("/:id", verifyToken, getUserById);
+router.put("/:id", verifyToken, updateUser);
+router.delete("/:id", verifyToken, deleteUser);
 
 module.exports = router;

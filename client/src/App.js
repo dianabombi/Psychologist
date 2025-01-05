@@ -2,7 +2,7 @@ import React from "react";
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import NavBar from "./components/navBar";
+// import NavBar from "./components/navBar";
 import HomePage from "./components/homePage";
 import BookingSystem from "./components/bookingSystem";
 import Register from "./components/register";
@@ -32,9 +32,26 @@ function App() {
         <Route path="/register" element={<Register />}  /> 
         <Route path="/login" element={<Login />}  /> 
         <Route path="/blog" element={<Blog />}  /> 
-        <Route path="/dashboard" element={<Dashboard />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/about" element={<About />}  /> 
-        <Route path="/calendar" element={<CalendarPage />} />
+
+        <Route
+          path="/calendar"
+          element={
+            <ProtectedRoute>
+              <CalendarPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/admin" element={<AdminProfile />} />
       </Routes>
     </BrowserRouter>

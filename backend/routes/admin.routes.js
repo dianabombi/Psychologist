@@ -11,7 +11,7 @@ const {
 // Protect all admin routes
 router.use(authMiddleware);
 
-router.put("/:id", confirmBooking);
+// router.put("/:id", confirmBooking);
 router.post("/timeSlot", createTimeSlot);
 
 module.exports = router;

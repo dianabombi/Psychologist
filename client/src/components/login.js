@@ -2,51 +2,51 @@ import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import NavBar from './navBar';
-import MyButton from './button'; // Optional if you're not using MyButton
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function Login() {
-    const [loginInput, setLoginInput] = useState({
-        email: '',
-        password: ''
-    });
-
+  
+    const [credentials, setCredentials] = useState({email:"", password:""});
     const [showPassword, setShowPassword] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [errorMessage, setErrorMessage] = useState(''); 
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setLoginInput({
-            ...loginInput,
+        setCredentials({
+            ...credentials,
             [name]: value
         });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted'); 
+        console.log("Form submitted");
+    
+        if (!credentials.email || !credentials.password) {
+            setErrorMessage('Please fill in all fields.');
+            return;
+        }
+    
         try {
-            const response = await axios.post('http://localhost:8000/users/login', loginInput);
-            if (response.data.token) {
-                setIsLoggedIn(true);
-                setSuccessMessage(response.data.msg);
+            const response = await axios.post('http://localhost:8000/users/login', credentials);
+    
+            if (response?.data?.token) {
+                localStorage.setItem("token", response.data.token);
                 setErrorMessage('');
-                localStorage.setItem('authToken', response.data.token);
-                console.log("Redirecting to dashboard...");
+                setSuccessMessage('Login successful');
                 navigate("/dashboard");
             } else {
-                setIsLoggedIn(false);
-                setErrorMessage(response.data.msg);
+                setErrorMessage(response?.data?.msg || 'Login failed. Please check your credentials.');
                 setSuccessMessage('');
             }
         } catch (error) {
             console.error('Login error:', error.response || error.message);
-            setErrorMessage('An error occurred. Please try again later.');
+            setErrorMessage(error.response?.data?.msg || 'An error occurred. Please try again later.');
+            setSuccessMessage('');
         }
     };
 
@@ -66,7 +66,7 @@ function Login() {
                         type="email"
                         placeholder="Registered e-mail"
                         name="email"
-                        value={loginInput.email}
+                        value={credentials.email}
                         onChange={handleChange}
                         required
                     />
@@ -76,7 +76,7 @@ function Login() {
                         type={showPassword ? 'text' : 'password'}
                         placeholder="Password"
                         name="password"
-                        value={loginInput.password}
+                        value={credentials.password}
                         onChange={handleChange}
                         required
                     />

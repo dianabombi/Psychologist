@@ -46,31 +46,32 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         let {email, password} = req.body;
+        
         if (!email || !password) {
-        return res.send ({msg: "Email and password are required for login."});
+            return res.status(400).json({msg: "Email and password are required for login."});
         }
 
         let doesUserExist = await User.findOne({email});
         if (!doesUserExist) {
-            return res.send ({msg: "User is not registered."});
+            return res.status(404).json({msg: "User is not registered."});
         }
-        let isPasswordValid = await bcrypt.compare (password, doesUserExist.password);
+
+        let isPasswordValid = await bcrypt.compare(password, doesUserExist.password);
         if (!isPasswordValid) {
-            return res.send ({msg: "Password is invalid."});
+            return res.status(400).json({msg: "Password is invalid."});
         }
 
-        // after verification of password validity, token needs to be generated 
-
+        // After verification of password validity, generate the token
         const payload = {
             userId: doesUserExist._id,
             email: doesUserExist.email,
         };
 
         let token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
-
-        return res.send({msg: "Login successfully", token});
+        return res.status(200).json({msg: "Login successful", token, status: true});
     } catch (error) {
-        return res.status(500).send({msg:"Internal server error", error});
+        console.error(error); // Add logging to catch errors
+        return res.status(500).json({msg: "Internal server error", error: error.message});
     }
 };
 
