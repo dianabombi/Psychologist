@@ -31,14 +31,14 @@ function HomePage() {
             </div>
 
             <img 
-            src="./flowers.jpg"
+            src="./therapy session.jpg"
             className='flowers-image'
             />
         </div>
 
         <div className='second-text'>
         <img 
-            src="./therapy session.jpg"
+            src="./flowers.jpg"
             className='hands-image'
             />
           <p>"A journey of a thousand miles begins with a single step."

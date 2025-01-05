@@ -12,6 +12,7 @@ import Dashboard from "./components/Dashboard";
 import About from "./components/about";
 import ProtectedRoute from "./components/protectedroutesComponent";
 import CalendarPage from "./components/calendarPage";
+import AdminProfile from "./components/adminProfile";
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/about" element={<About />}  /> 
         <Route path="/calendar" element={<CalendarPage />} />
+        <Route path="/admin" element={<AdminProfile />} />
       </Routes>
     </BrowserRouter>
   );
