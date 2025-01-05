@@ -20,5 +20,18 @@ const createTimeSlot = async (req, res) => {
     }
 };
 
+const getAdminProfile = async (req, res) => {
+    try {
+        // Assuming admin data is stored in req.user by middleware
+        if (req.user.role !== "admin") {
+            return res.status(403).send({ msg: "Access denied: Admins only" });
+        }
 
-module.exports = {confirmBooking, createTimeSlot};
+        return res.status(200).send({ msg: "Welcome to the Admin Profile", user: req.user });
+    } catch (error) {
+        return res.status(500).send({ msg: "An error occurred while fetching admin profile", error });
+    }
+};
+
+
+module.exports = {confirmBooking, createTimeSlot, getAdminProfile };

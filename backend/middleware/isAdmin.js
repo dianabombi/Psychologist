@@ -1,15 +1,16 @@
+const jwt = require('jsonwebtoken');
 
-// RBAC = role based access control 
+const authMiddleware = (req, res, next) => {
+    const token = req.header('Authorization');
+    if (!token) return res.status(401).send('Access Denied');
 
-function isAdmin (req, res, next) {
-    if (req.user && req.user.role === "admin") {
-        next ();
-    } else {
-        res.status(403).send({msg: "Access denied"})
+    try {
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
+        req.user = verified;
+        next();
+    } catch (err) {
+        res.status(400).send('Invalid Token');
     }
-}
+};
 
-// Admin-only route
-app.get('/admin', isAdmin, (req, res) => {
-    res.json({ message: 'Welcome Admin!' });
-});
+module.exports = authMiddleware;
