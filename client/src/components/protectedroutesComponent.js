@@ -1,18 +1,21 @@
 import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import {jwtDecode} from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
   const location = useLocation();
   let isValid = false;
 
-  try {
-    const decodedToken = jwtDecode(token);
-    isValid = decodedToken.exp * 1000 > Date.now(); // Validate expiration
-  } catch (error) {
-    isValid = false;
+  // Check if token exists
+  if (token) {
+    try {
+      const decodedToken = jwtDecode(token);
+      isValid = decodedToken.exp * 1000 > Date.now(); // Validate expiration
+    } catch (error) {
+      isValid = false;
+    }
   }
 
   if (!isValid) {
@@ -27,4 +30,3 @@ ProtectedRoute.propTypes = {
 };
 
 export default ProtectedRoute;
-
