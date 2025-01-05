@@ -28,16 +28,16 @@ function Dashboard() {
     <div>
       < NavBar />
       <div className='admin-dashboard'>
-        <h1>Welcome in Admin Dashboard, {user.name}!</h1>
+        <h1>Welcome to Admin Dashboard, {user.name}!</h1>
         {user.role === "admin" && (
             <div>
-              <div className="border">
+              <div>
                 <button onClick={redirectCalendar}>Calendar of sessions</button>
               </div>
-              <div className="border">
+              <div>
                 <button onClick={confirmBooking}>Confirm booking</button>
               </div>
-              <div className="border">
+              <div>
               <button onClick={addBlog}>Availability confirmation</button>
               </div>
             </div>

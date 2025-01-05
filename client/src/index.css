@@ -81,9 +81,21 @@
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;}
 
 .register-form input {
-    border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 0.7rem;
+}
+
+input{
+    border-color: #7A8323;
+}
+[required]:placeholder-shown{
+    border-color: red;
+}
+
+/* Input focus clear the default blue color of browser */
+input:focus {
+    outline: none;
+    border-color: #7A8323;
 }
 
 .login-form input {

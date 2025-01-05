@@ -46,8 +46,8 @@ function Register() {
     
         try {
             const response = await axios.post('http://localhost:8000/users/register', formInput);
+            
             if (response.data.status === true) {
-                
                 alert('Registration successful!');
                 setFormInput({
                     firstName: '',
