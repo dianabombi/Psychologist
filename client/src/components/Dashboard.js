@@ -1,12 +1,11 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import NavBar from './navBar';
 
 function Dashboard() {
 
   const user = {
     id:"1",
-    name: "Diana", 
+    name: "guest", 
     role: "admin" 
   };
 
@@ -14,22 +13,28 @@ function Dashboard() {
 
   const redirectCalendar = () => {
     navigate ("/calendar"); //bookingCalendar
-  }
+  };
 
   const confirmBooking = () => {
     navigate ("/bookingConfirmation");
-  }
+  };
 
   const addBlog = () => {
     navigate ("/addBlog");
-  }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token"); // Clear the token from localStorage
+    navigate("/login"); // Redirect to login page
+  };
 
   return (
     <div>
-      < NavBar />
       <div className='admin-dashboard'>
-        <h1>Welcome to Admin Dashboard, {user.name}!</h1>
-        {user.role === "admin" && (
+        <h1>Welcome to admin Dashboard, {user.name}!</h1>
+
+        <div className="left-panel">
+          {user.role === "admin" && (
             <div>
               <div>
                 <button onClick={redirectCalendar}>Calendar of sessions</button>
@@ -38,14 +43,33 @@ function Dashboard() {
                 <button onClick={confirmBooking}>Confirm booking</button>
               </div>
               <div>
-              <button onClick={addBlog}>Availability confirmation</button>
+              <button>Availability confirmation</button>
               </div>
-            </div>
+
+              <div>
+              <button onClick={addBlog}>Blog</button>
+              </div>
+
+              <div>
+              <button>Settings</button>
+              </div>
+
+              <div>
+              <button>Users</button>
+              </div>
+
+              <div>
+              <button className="logout-button" onClick={handleLogout}>
+                  Log Out
+              </button>
+              </div>
+          </div>
         )}
 
         {user.role === 'user' && (
             <p>You have limited access as a User.</p>
           )}
+    </div>
     </div>
     </div>
   )

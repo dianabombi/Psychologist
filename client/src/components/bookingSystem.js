@@ -8,7 +8,7 @@ function BookingSystem() {
   const [selectedTime, setSelectedTime] = useState("");
   const [bookingDetails, setBookingDetails] = useState(null);
 
-  const timeSlots = ["09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "13:00 PM", "14:00 PM"];
+  const timeSlots = ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "13:00 PM", "14:00 PM", "15:00 PM"];
 
   const handleBookingSubmit = (details) => {
     setBookingDetails({ ...details, date: selectedDate, time: selectedTime });
@@ -19,18 +19,23 @@ function BookingSystem() {
     <div> 
       <NavBar />
       <div className="booking-page">
-      <h1 >Book your session here:</h1>
+      <h1 >Book your session here</h1>
       
       <DatePicker
         selected={selectedDate}
         onChange={(date) => setSelectedDate(date)}
         minDate={new Date()}
         placeholderText="Select a date"
+        className="date-picker"
       />
       <div>
         <h2>Select a Time Slot</h2>
         {timeSlots.map((slot, index) => (
-          <button key={index} onClick={() => setSelectedTime(slot)} disabled={!selectedDate}>
+          <button 
+            key={index} 
+            className = "time-slot"
+            onClick={() => setSelectedTime(slot)} 
+            disabled={!selectedDate}>
             {slot}
           </button>
         ))}
@@ -49,7 +54,8 @@ function BookingSystem() {
             Name: {bookingDetails.name} <br />
             Email: {bookingDetails.email} <br />
             Date: {bookingDetails.date.toDateString()} <br />
-            Time: {bookingDetails.time}
+            Time: {bookingDetails.time} <br />
+            Confirmation e-mail has been sent to: {bookingDetails.email}
           </p>
         </div>
       )}
@@ -69,13 +75,27 @@ function BookingForm({ onSubmit }) {
     }}>
       <div>
         <label>Name:</label>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+        <input 
+          type="text" 
+          className="booking-name"
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
+          required />
       </div>
       <div>
         <label>Email:</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+        <input 
+          type="email" 
+          className="booking-email"
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          required 
+          />
       </div>
-      <button type="submit">Confirm Booking</button>
+      <button 
+        type="submit"
+        className="booking-confirm"
+        >Confirm Booking</button>
     </form>
   );
 }
