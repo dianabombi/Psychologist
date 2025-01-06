@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const axios = require("axios");
 const verifyToken = require("../middleware/auth")
+const { updateUserRole } = require("../controllers/user.controller");
 
 const {
     register,
@@ -18,5 +19,6 @@ router.post("/login", login);
 router.get("/:id", verifyToken, getUserById);
 router.put("/:id", verifyToken, updateUser);
 router.delete("/:id", verifyToken, deleteUser);
+router.post("/update-role", verifyToken, updateUserRole);
 
 module.exports = router;

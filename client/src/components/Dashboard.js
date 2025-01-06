@@ -5,7 +5,7 @@ function Dashboard() {
 
   const user = {
     id:"1",
-    name: "guest", 
+    name: "Barbora", 
     role: "admin" 
   };
 
@@ -31,7 +31,7 @@ function Dashboard() {
   return (
     <div>
       <div className='admin-dashboard'>
-        <h1>Welcome to admin Dashboard, {user.name}!</h1>
+        <h1>Welcome to your Dashboard, {user.role}!</h1>
 
         <div className="left-panel">
           {user.role === "admin" && (

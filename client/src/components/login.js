@@ -34,11 +34,21 @@ function Login() {
         try {
             const response = await axios.post('http://localhost:8000/users/login', credentials);
     
-            if (response?.data?.token) {
+            if (response?.data?.token && response?.data?.role) {
+                // Save token in localStorage
                 localStorage.setItem("token", response.data.token);
+
                 setErrorMessage('');
                 setSuccessMessage('Login successful');
-                navigate("/dashboard");
+
+                // Redirect based on user role
+                if (response.data.role === 'admin') {
+                    navigate("/dashboard"); // Admin-specific dashboard route
+                } else if (response.data.role === 'user') {
+                    navigate("/user-dashboard"); // User-specific dashboard route
+                } else {
+                    setErrorMessage('Invalid role.');
+                }
             } else {
                 setErrorMessage(response?.data?.msg || 'Login failed. Please check your credentials.');
                 setSuccessMessage('');
@@ -49,6 +59,7 @@ function Login() {
             setSuccessMessage('');
         }
     };
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);

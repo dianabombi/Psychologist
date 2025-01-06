@@ -53,7 +53,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/admin" element={<AdminProfile />} />
+        <Route path="/admin-dashboard" element={<AdminProfile />} />
 
         <Route 
           path="/myDiary" 

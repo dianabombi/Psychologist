@@ -7,10 +7,10 @@ const sendEmail = require('./mailgun.js');
 // _____ REGISTER _____
 const register = async (req, res) => {
     try {
-        const { firstName, surname, email, phone, password, role } = req.body;
+        const { firstName, surname, email, phone, password, role, clientToken } = req.body;
 
         if (!firstName || !surname || !email || !phone || !password) {
-            console.error("Missing Fields:", { firstName, surname, email, phone, role });
+            console.error("Missing Fields:", { firstName, surname, email, phone, role, clientToken });
             return res.status(400).send({ msg: "Please fill out all required fields.", status: false });
         }
 
@@ -27,8 +27,12 @@ const register = async (req, res) => {
             });
         }
 
-        const allowedRoles = ['user', 'admin']; // roles for users
-        const userRole = allowedRoles.includes(role) ? role : 'user';
+        let userRole = role || "user"; // Default to "user"
+        if (role === "admin") {
+            if (clientToken !== process.env.ADMIN_CREATION_TOKEN) {
+                return res.status(403).send({ msg: "Unauthorized to create an admin user.", status: false });
+            }
+        }
 
         const saltRounds = Number.isInteger(parseInt(process.env.SALT_ROUND, 10)) ? parseInt(process.env.SALT_ROUND, 10) : 10;
         if (!process.env.SALT_ROUND) console.warn("SALT_ROUND not set. Defaulting to 10.");
@@ -134,5 +138,28 @@ const deleteUser = async (req, res) => {
         }
     };
 
+    const updateUserRole = async (req, res) => {
+        try {
+            const { userId, newRole } = req.body;
+    
+            if (req.user.role !== "admin") {
+                return res.status(403).send({ msg: "Access denied. Only admins can update roles." });
+            }
+    
+            const user = await User.findById(userId);
+            if (!user) {
+                return res.status(404).send({ msg: "User not found." });
+            }
+    
+            user.role = newRole;
+            await user.save();
+    
+            return res.status(200).send({ msg: "User role updated successfully.", status: true });
+        } catch (error) {
+            console.error("Error updating user role:", error.message);
+            return res.status(500).send({ msg: "Internal server error.", status: false });
+        }
+    };
 
-module.exports = {register, login, getUserById, updateUser, deleteUser};
+
+module.exports = {register, login, getUserById, updateUser, deleteUser, updateUserRole};
