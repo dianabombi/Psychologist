@@ -23,9 +23,15 @@ const getNotesById = async (req, res) => {
 
 const createNote = async (req, res) => {
     try {
-        let newNote = req.body;
-        await Diary.create (newNote);
-        return res.send({msg: "Daily notes has been created successfully"});
+        const { date, content, author } = req.body;
+
+                if (!date || !content || !author) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
+
+        const newDiary = new Diary({ date, content, author });
+        await newDiary.save();
+        return res.status(201).json(newDiary);
     } catch (error) {
         return res.status(500).send({msg:"Daily notes can not be created", error})
     }

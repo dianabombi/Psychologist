@@ -13,6 +13,7 @@ import About from "./components/about";
 import ProtectedRoute from "./components/protectedroutesComponent";
 import CalendarPage from "./components/calendarPage";
 import AdminProfile from "./components/adminProfile";
+import MyDiary from "./components/myDiary";
 
 
 function App() {
@@ -53,6 +54,8 @@ function App() {
           }
         />
         <Route path="/admin" element={<AdminProfile />} />
+        <Route path="/myDiary" element={<MyDiary />} />
+
       </Routes>
     </BrowserRouter>
   );

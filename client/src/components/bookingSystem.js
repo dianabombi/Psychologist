@@ -95,7 +95,7 @@ function BookingForm({ onSubmit }) {
       <button 
         type="submit"
         className="booking-confirm"
-        >Confirm Booking</button>
+        >CONFIRM</button>
     </form>
   );
 }

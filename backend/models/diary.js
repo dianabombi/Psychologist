@@ -4,9 +4,9 @@
 const mongoose = require('mongoose');
 
 const diarySchema = new mongoose.Schema({
-    date: { type: Date, default: Date.now },
+    date: { type: String, required: true },
     content: {type: String},
-    author: {type: mongoose.Schema.Types.ObjectId, ref: "User"},
+    author: { type: String, required: true },
   });
 
 const Diary = mongoose.model('Diary', diarySchema); // model always starts with capital letter and singular

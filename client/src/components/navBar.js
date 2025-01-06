@@ -35,6 +35,10 @@ function NavBar () {
     navigate ("/about");
   }
 
+  const handleDiaryClick = () => {
+    navigate ("/myDiary");
+  }
+
   
   return (
    
@@ -55,7 +59,7 @@ function NavBar () {
                             <li className="dropdownItem">Therapy</li>
                             <li className="dropdownItem">Workshops</li>
                             <li className="dropdownItem" onClick={handleBookingClick}>Book an appointment</li>
-                            <li className="dropdownItem">My Diary</li>
+                            <li className="dropdownItem" onClick={handleDiaryClick}>My Diary</li>
                             <li className="dropdownItem" onClick={handleBlogClick}>Blog</li>
                         </ul>
                     )}
