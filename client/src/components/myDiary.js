@@ -11,7 +11,7 @@ function MyDiary() {
 
   useEffect(() => {
     axios
-      .get("/diary")
+      .get("http://localhost:8000/diary")
       .then((response) => setDiaries(response.data))
       .catch((error) => console.error("Error fetching diaries:", error));
   }, []);
@@ -20,7 +20,7 @@ function MyDiary() {
     event.preventDefault();
 
     const newDiary = { date, content, author };
-    axios.post("/diary/create", newDiary)
+    axios.post("http://localhost:8000/diary/create", newDiary)
       .then((response) => {
         setDiaries([...diaries, response.data]);
         setDate("");
@@ -31,8 +31,10 @@ function MyDiary() {
   };
 
   const handleEdit = (index) => {
-    setEditIndex(index);
-    setEditDiary({ ...diaries[index] });
+    if (diaries[index]) {
+      setEditIndex(index);
+      setEditDiary({ ...diaries[index] });
+    }
   };
 
   const handleEditChange = (e) => {
@@ -44,7 +46,7 @@ function MyDiary() {
     event.preventDefault();
     const { _id } = editDiary;
     axios
-      .put(`/diary/${_id}`, editDiary)
+      .put(`http://localhost:8000/diary/${_id}`, editDiary)
       .then((response) => {
         const updatedDiaries = diaries.map((diary) =>
           diary._id === _id ? response.data : diary
@@ -59,7 +61,7 @@ function MyDiary() {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this note?")) {
       axios
-        .delete(`/diary/${id}`)
+        .delete(`http://localhost:8000/diary/${id}`)
         .then(() => {
           const updatedDiaries = diaries.filter((diary) => diary._id !== id);
           setDiaries(updatedDiaries);
@@ -72,7 +74,7 @@ function MyDiary() {
     <div>
       <div className="diary-page">
         <form className="diary-form" onSubmit={handleSave}>
-          <h2>Add your notes</h2>
+          <h2>Welcome to your journaling experience</h2>
           <label htmlFor="date">Date</label>
           <input
             type="text"
@@ -104,7 +106,7 @@ function MyDiary() {
           </button>
         </form>
 
-        <h3>Your daily notes</h3>
+        <h3>Diary daily notes</h3>
         {diaries.map((diary, index) => (
           <div key={diary._id}>
             {editIndex === index ? (

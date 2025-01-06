@@ -54,7 +54,14 @@ function App() {
           }
         />
         <Route path="/admin" element={<AdminProfile />} />
-        <Route path="/myDiary" element={<MyDiary />} />
+
+        <Route 
+          path="/myDiary" 
+          element={
+            <ProtectedRoute>
+              <MyDiary />
+            </ProtectedRoute>
+          } />
 
       </Routes>
     </BrowserRouter>

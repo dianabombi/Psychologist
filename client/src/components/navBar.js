@@ -36,8 +36,14 @@ function NavBar () {
   }
 
   const handleDiaryClick = () => {
-    navigate ("/myDiary");
-  }
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/myDiary");
+    } else {
+      alert("You must be logged in to access this page.");
+      navigate("/login");
+    }
+  };
 
   
   return (

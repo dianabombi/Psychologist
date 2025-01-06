@@ -360,8 +360,6 @@ input:focus {
 
   /* BOOKING PAGE */
 
- 
-
   .booking-page h1 {
     margin-bottom: 2rem;
   }
@@ -449,41 +447,42 @@ input:focus {
 }
 
 .diary-form textarea {
-    min-height: 100px;
+  min-height: 200px;
   }
 
-  .button-diary {
-    width: fit-content;
-    padding: 0.8rem 1.5rem;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-  }
+.button-diary {
+  width: fit-content;
+  padding: 0.8rem 1.5rem;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
   
-  .button-diary:hover {
-    background-color: #0056b3;
-  }
+.button-diary:hover {
+  background-color: #0056b3;
+}
   
-  h3 {
-    margin-top: 2rem;
-    color: #333;
-  }
+h3 {
+  margin-top: 2rem;
+  color: #333;
+}
 
-  .diary-page > div > div {
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
-  }
+.diary-page > div > div {
+  background: #F5EFE7;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 5px;
+  max-width: 50%;
+  margin-bottom: 1rem;
+}
 
-  .diary-page strong {
-    color: #555;
-  }
+.diary-page strong {
+  color: #555;
+}
 
   .edit-button {
     margin-right: 1rem;
@@ -500,11 +499,18 @@ input:focus {
     background-color: #218838;
   }
   
-  .diary-page button:nth-of-type(2) {
+  .delete-button {
+    margin-right: 1rem;
+    padding: 0.5rem 1rem;
     background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
-  .diary-page button:nth-of-type(2):hover {
+  .delete-button:hover {
     background-color: #c82333;
   }
   
