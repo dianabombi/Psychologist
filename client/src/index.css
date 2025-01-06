@@ -181,7 +181,7 @@ input:focus {
     filter: grayscale(100%) brightness(120%);
 }
 
-.contactMe-button{
+.contactMe-button {
     margin: 5rem;
     width: fit-content;
     border: none;
@@ -244,10 +244,14 @@ input:focus {
   }
 
 .book-session {
-    width: 100px;
     grid-column: 2/4;
     justify-self: center;
     margin: 2rem;
+    display: flex;
+    justify-content: center; 
+    width: 170px;
+    height: 70px;
+    border-radius: 10px;
 }
 
 
@@ -340,9 +344,7 @@ input:focus {
 
   /* BOOKING PAGE */
 
-  .booking-page {
-
-  }
+ 
 
   .booking-page h1 {
     margin-bottom: 2rem;
@@ -361,10 +363,23 @@ input:focus {
     margin-right: 2rem;
   }
 
-  .booking-page button {
+  .time-slots button {
     border-radius: 5px;
     padding: 1rem;
+    background-color: white;
+    transition: background-color 0.3s ease;
+    margin: 1rem;
   }
+
+  .time-slots button.selected {
+    background-color: #0056b3; 
+    color: white;
+}
+
+    .time-slots button:disabled {
+    background-color: #ccc; /* Disabled state color */
+    cursor: not-allowed;
+}
 
   .booking-page input {
     border-radius: 5px;

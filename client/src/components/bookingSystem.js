@@ -28,12 +28,12 @@ function BookingSystem() {
         placeholderText="Select a date"
         className="date-picker"
       />
-      <div>
+      <div className="time-slots">
         <h2>Select a Time Slot</h2>
         {timeSlots.map((slot, index) => (
           <button 
             key={index} 
-            className = "time-slot"
+            className={selectedTime === slot ? 'selected' : ''}
             onClick={() => setSelectedTime(slot)} 
             disabled={!selectedDate}>
             {slot}

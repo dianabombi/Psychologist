@@ -51,7 +51,7 @@ function HomePage() {
           </p>  
         </div>
 
-        <button className='book-session' onClick ={clickNavigate}>Book Session</button> 
+        <button className='book-session' onClick ={clickNavigate}>BOOK SESSION</button> 
 
         <div className="third-block">
             <div className= "card" style={{ width: '18rem' }}>
