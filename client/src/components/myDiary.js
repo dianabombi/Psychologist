@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import NavBar from "./navBar";
 
 function MyDiary() {
   const [date, setDate] = useState("");
@@ -72,6 +73,7 @@ function MyDiary() {
 
   return (
     <div>
+        <NavBar />
       <div className="diary-page">
         <form className="diary-form" onSubmit={handleSave}>
           <h2>Welcome to your journaling experience</h2>

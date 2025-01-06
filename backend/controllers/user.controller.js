@@ -7,11 +7,16 @@ const sendEmail = require('./mailgun.js');
 // _____ REGISTER _____
 const register = async (req, res) => {
     try {
-        const { firstName, surname, email, phone, password } = req.body;
+        const { firstName, surname, email, phone, password, role } = req.body;
 
         if (!firstName || !surname || !email || !phone || !password) {
-            console.error("Missing Fields:", { firstName, surname, email, phone });
+            console.error("Missing Fields:", { firstName, surname, email, phone, role });
             return res.status(400).send({ msg: "Please fill out all required fields.", status: false });
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return res.status(400).send({ msg: "Invalid email format.", status: false });
         }
 
         const oldUser = await User.findOne({ email });
@@ -22,6 +27,9 @@ const register = async (req, res) => {
             });
         }
 
+        const allowedRoles = ['user', 'admin']; // roles for users
+        const userRole = allowedRoles.includes(role) ? role : 'user';
+
         const saltRounds = Number.isInteger(parseInt(process.env.SALT_ROUND, 10)) ? parseInt(process.env.SALT_ROUND, 10) : 10;
         if (!process.env.SALT_ROUND) console.warn("SALT_ROUND not set. Defaulting to 10.");
         const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -31,10 +39,12 @@ const register = async (req, res) => {
             surname,
             email,
             phone,
-            password: hashedPassword
+            password: hashedPassword,
+            role: userRole,
         };
 
-        await User.create(payload);
+        await User.create(payload); // saving user to database
+
         return res.status(201).send({ msg: "Registered successfully", status: true });
     } catch (error) {
         console.error("Error during registration:", error.message);
@@ -65,10 +75,16 @@ const login = async (req, res) => {
         const payload = {
             userId: doesUserExist._id,
             email: doesUserExist.email,
+            role: doesUserExist.role
         };
 
-        let token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '1h' });
-        return res.status(200).json({msg: "Login successful", token, status: true});
+        let token = jwt.sign (
+            payload, 
+            process.env.SECRET_KEY, 
+            { expiresIn: '1h' }
+        );
+
+        return res.status(200).json({msg: "Login successful",  role: doesUserExist.role, token, status: true});
     } catch (error) {
         console.error(error); // Add logging to catch errors
         return res.status(500).json({msg: "Internal server error", error: error.message});
