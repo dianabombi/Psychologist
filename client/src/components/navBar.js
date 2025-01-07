@@ -1,39 +1,55 @@
-import React, { useState } from "react";
-import { useNavigate} from "react-router-dom";
+import React, { useState, useEffect } from "react";  // Don't forget to import useEffect
+import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 
 function NavBar () {
-
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);  // Define state for login status
+
+  useEffect(() => {
+    // Check if a token exists when the component mounts (page load)
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);  // Updates the state based on token existence
+  }, []);  // Empty dependency array ensures it runs only once on mount
 
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   const handleHomeClick = () => {
     navigate("/");
-  }
+  };
+
+  const handleTherapyClick = () => {
+    navigate("/therapy");
+  };
 
   const handleBookingClick = () => {
     navigate("/bookings");
-  }
+  };
 
   const handleRegisterClick = () => {
     navigate("/register");
-  }
+  };
 
   const handleLoginClick = () => {
-    navigate ("/login");
-  }
+    navigate("/login");
+  };
 
   const handleBlogClick = () => {
-    navigate ("/blog");
-  }
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/blog");
+    } else {
+      alert("You need to log in, if you want to be our contributor.");
+      navigate("/login");
+    }
+  };
 
   const handleAboutClick = () => {
-    navigate ("/about");
-  }
+    navigate("/about");
+  };
 
   const handleDiaryClick = () => {
     const token = localStorage.getItem("token");
@@ -45,36 +61,40 @@ function NavBar () {
     }
   };
 
-  
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);  // Update the state after logging out
+    navigate("/login");
+  };
+
   return (
-   
     <div className="navBar">
-   
-    <ul className="listBar">
-        <FontAwesomeIcon 
-        icon={faHouse}
-        onClick={handleHomeClick}
-        />
-                <li className="navItem" onClick={handleAboutClick}>About Me</li>
-                <li
-                    className="fixed-panel" onClick={toggleDropdown}
-                >
-                    Services
-                    {dropdownOpen && (
-                        <ul className="dropdownMenu">
-                            <li className="dropdownItem">Therapy</li>
-                            <li className="dropdownItem">Workshops</li>
-                            <li className="dropdownItem" onClick={handleBookingClick}>Book an appointment</li>
-                            <li className="dropdownItem" onClick={handleDiaryClick}>My Diary</li>
-                            <li className="dropdownItem" onClick={handleBlogClick}>Blog</li>
-                        </ul>
-                    )}
-                </li>
-                <li className="navItem" onClick={handleLoginClick}>Login</li>
-                <li className="navItem" onClick={handleRegisterClick}>Register</li>
-            </ul>   
-        </div>
-    );
+      <ul className="listBar">
+        <FontAwesomeIcon icon={faHouse} onClick={handleHomeClick} />
+        <li className="navItem" onClick={handleAboutClick}>About Me</li>
+        <li className="fixed-panel" onClick={toggleDropdown}>
+          Services
+          {dropdownOpen && (
+            <ul className="dropdownMenu">
+              <li className="dropdownItem" onClick={handleTherapyClick}>Therapy</li>
+              <li className="dropdownItem" onClick={handleBookingClick}>Book an appointment</li>
+              <li className="dropdownItem" onClick={handleDiaryClick}>My Diary</li>
+              <li className="dropdownItem" onClick={handleBlogClick}>Blog</li>
+            </ul>
+          )}
+        </li>
+
+        {isLoggedIn ? (
+          <li className="navItem" onClick={handleLogout}>Log Out</li>
+        ) : (
+          <>
+            <li className="navItem" onClick={handleLoginClick}>Login</li>
+            <li className="navItem" onClick={handleRegisterClick}>Register</li>
+          </>
+        )}
+      </ul>
+    </div>
+  );
 }
 
 export default NavBar;

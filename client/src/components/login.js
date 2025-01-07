@@ -45,7 +45,7 @@ function Login() {
                 if (response.data.role === 'admin') {
                     navigate("/dashboard"); // Admin-specific dashboard route
                 } else if (response.data.role === 'user') {
-                    navigate("/user-dashboard"); // User-specific dashboard route
+                    navigate("/myDiary"); // User-specific dashboard route
                 } else {
                     setErrorMessage('Invalid role.');
                 }

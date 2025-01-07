@@ -523,16 +523,27 @@ h3 {
     width: calc(100% - 2rem);
   }
   
-  .edit-mode input,
-  .edit-mode textarea {
-    background-color: #e9ecef;
-    border-color: #6c757d;
+
+  /* THERAPY PAGE */
+
+  .therapy-page {
+    background-color: #D8C4B6;
+    font-family: "Playfair Display", serif;
+    line-height: 1.6;
+    color: #333;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    max-width: 800px;
   }
-  
-  .edit-mode button {
-    background-color: #ffc107;
+
+  .therapy-page h3 {
+    font-family: 'Pacifico', cursive;
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
   }
-  
-  .edit-mode button:hover {
-    background-color: #e0a800;
+  .therapy-page p {
+    margin-bottom: 20px;
   }

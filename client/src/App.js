@@ -1,8 +1,7 @@
 import React from "react";
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-// import NavBar from "./components/navBar";
 import HomePage from "./components/homePage";
 import BookingSystem from "./components/bookingSystem";
 import Register from "./components/register";
@@ -12,27 +11,24 @@ import Dashboard from "./components/Dashboard";
 import About from "./components/about";
 import ProtectedRoute from "./components/protectedroutesComponent";
 import CalendarPage from "./components/calendarPage";
-import AdminProfile from "./components/adminProfile";
 import MyDiary from "./components/myDiary";
-
+import Therapy from "./components/therapy";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} /> 
+        <Route path="/" element={<HomePage />} />
+        <Route path="/bookings" element={<BookingSystem />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
 
         <Route 
-          path="/bookings" 
+          path="/blog" 
           element={
-              <BookingSystem />
+              <Blog />
           } 
-          /> 
-
-        <Route path="/register" element={<Register />}  /> 
-        <Route path="/login" element={<Login />}  /> 
-        <Route path="/blog" element={<Blog />}  /> 
+        />
 
         <Route
           path="/dashboard"
@@ -42,9 +38,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        <Route path="/about" element={<About />}  /> 
-
+        <Route path="/about" element={<About />} />
         <Route
           path="/calendar"
           element={
@@ -53,16 +47,16 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/admin-dashboard" element={<AdminProfile />} />
 
-        <Route 
-          path="/myDiary" 
+        <Route
+          path="/myDiary"
           element={
             <ProtectedRoute>
               <MyDiary />
             </ProtectedRoute>
-          } />
-
+          }
+        />
+        <Route path="/therapy" element={<Therapy />} />
       </Routes>
     </BrowserRouter>
   );
