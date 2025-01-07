@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 
 const bookingSchema = new mongoose.Schema({
-    date: { type: Date},
-    time: {type: String},
-    userInfo: {type: mongoose.Schema.Types.ObjectId, ref: "User"} // from User Schema
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    date: { type: Date, required: true }, 
+    time: { type: String, required: true },
+    duration: { type: Number, required: true }, 
   });
 
 const Booking = mongoose.model('Booking', bookingSchema); // model always starts with capital letter and singular

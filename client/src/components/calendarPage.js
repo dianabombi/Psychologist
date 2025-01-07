@@ -7,18 +7,18 @@ const CalendarPage = () => {
     const [sessions, setSessions] = useState([]);
 
     useEffect(() => {
-        // Fetch sessions from the backend
         const fetchSessions = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/sessions'); 
+                const response = await axios.get('http://localhost:8000/api/sessions');
+                console.log(response);
                 setSessions(response.data);
             } catch (error) {
                 console.error('Error fetching sessions:', error);
             }
         };
-
         fetchSessions();
     }, []);
+    
 
     return (
         <div>

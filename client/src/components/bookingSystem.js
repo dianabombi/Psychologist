@@ -10,10 +10,31 @@ function BookingSystem() {
 
   const timeSlots = ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "13:00 PM", "14:00 PM", "15:00 PM"];
 
-  const handleBookingSubmit = (details) => {
-    setBookingDetails({ ...details, date: selectedDate, time: selectedTime });
-    console.log("Booking Confirmed:", { ...details, date: selectedDate, time: selectedTime });
+  const handleBookingSubmit = async (details) => {
+      const bookingData = { 
+        ...details, 
+        date: selectedDate, 
+        time: selectedTime,
+        duration: 60, // 1-hour sessions as default
   };
+
+  try {
+    const response = await fetch('http://localhost:8000/bookings/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bookingData),
+    });
+
+    if (!response.ok) {
+        throw new Error('Failed to save booking');
+    }
+
+    setBookingDetails(bookingData);
+    console.log("Booking Confirmed:", bookingData);
+} catch (error) {
+    console.error('Error saving booking:', error);
+}
+};
 
   return (
     <div> 

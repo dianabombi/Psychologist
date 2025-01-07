@@ -25,9 +25,7 @@ function App() {
 
         <Route 
           path="/blog" 
-          element={
-              <Blog />
-          } 
+          element= {<Blog />} 
         />
 
         <Route

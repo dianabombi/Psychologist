@@ -38,13 +38,7 @@ function NavBar () {
   };
 
   const handleBlogClick = () => {
-    const token = localStorage.getItem("token");
-    if (token) {
       navigate("/blog");
-    } else {
-      alert("You need to log in, if you want to be our contributor.");
-      navigate("/login");
-    }
   };
 
   const handleAboutClick = () => {
