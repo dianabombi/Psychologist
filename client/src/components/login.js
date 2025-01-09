@@ -82,7 +82,8 @@ function Login() {
                         required
                     />
 
-                    <label htmlFor="password">Password</label>
+            <label htmlFor="password">Password</label>
+                <div>
                     <input
                         type={showPassword ? 'text' : 'password'}
                         placeholder="Password"
@@ -91,10 +92,10 @@ function Login() {
                         onChange={handleChange}
                         required
                     />
-
                     <button className="password-eye" type="button" onClick={togglePasswordVisibility}>
                         {showPassword ? <FontAwesomeIcon icon={faEyeSlash} /> : <FontAwesomeIcon icon={faEye} />}
                     </button>
+                    </div>
 
                     <button className="login-button" type="submit">SUBMIT</button>
 

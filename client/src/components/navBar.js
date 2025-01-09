@@ -62,11 +62,12 @@ function NavBar () {
   };
 
   return (
+    <div>
+      <FontAwesomeIcon icon={faHouse} onClick={handleHomeClick} />
     <div className="navBar">
       <ul className="listBar">
-        <FontAwesomeIcon icon={faHouse} onClick={handleHomeClick} />
         <li className="navItem" onClick={handleAboutClick}>About Me</li>
-        <li className="fixed-panel" onClick={toggleDropdown}>
+        <li className="navItem" onClick={toggleDropdown}>
           Services
           {dropdownOpen && (
             <ul className="dropdownMenu">
@@ -87,6 +88,7 @@ function NavBar () {
           </>
         )}
       </ul>
+    </div>
     </div>
   );
 }

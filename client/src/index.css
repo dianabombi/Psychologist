@@ -46,7 +46,6 @@
 }
 
 .login-image {
-  height: 100vh;
   width: 100vh;
   margin-left: 100px;
 }
@@ -76,18 +75,20 @@
 
 .register-form input {
     border-radius: 5px;
+    border: none;
     padding: 0.7rem;
 }
 
-input{
+/* input{
     border-color: #7A8323;
 }
 [required]:placeholder-shown{
-    border-color: red;
-}
+    border-color: rgb(0, 119, 255);
+    
+} */
 
 .register-image {
-  /* width: 100vh; */
+  width: 100vh;
   height: 80vh;
   margin-right: 10rem;
 }
@@ -129,27 +130,37 @@ input:focus {
 .password-eye {
     border: none;
     background: transparent;
+    margin-left: 20px;
 }
 
 /* NAV BAR */
 
 .navBar{
-    /* position: fixed; */
+    display: flex;
+    justify-content: end;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
     background-color: #213555;
     color: #F5EFE7;
     width: 100%;
-    height: 60px;
-    align-content: center;
+    height: 80px;
     font-family: "Playfair Display", serif;
+}
+
+.navItem {
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 0.5rem;
 }
 
 .listBar {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
+    align-items: center;
     list-style: none;
     margin: 1rem;
+    gap: 20px;
 }
+
 
 .dropdownMenu {
     position: absolute;

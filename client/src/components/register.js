@@ -70,7 +70,7 @@ function Register() {
     <div>
         <NavBar />
     <div className = "register-page">
-    
+        
     <img 
             src="./garden.png"
             className="register-image" />
@@ -118,6 +118,7 @@ function Register() {
                 />
             
             <label htmlFor="password">Password</label>
+            <div>
             <input 
                 type={showPassword ? 'text' : 'password'}
                 placeholder = "password"
@@ -132,9 +133,9 @@ function Register() {
 
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <button className="register-button" type="submit">SUBMIT</button>
-        </form>
 
-        
+            </div>
+        </form>
      </div>
 </div>
   )
