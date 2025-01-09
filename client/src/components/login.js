@@ -101,6 +101,10 @@ function Login() {
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
                     {successMessage && <p className="success-message">{successMessage}</p>}
                 </form>
+
+                <img 
+                    src="./meditation.jpg"
+                    className ="login-image"/>
             </div>
         </div>
     );

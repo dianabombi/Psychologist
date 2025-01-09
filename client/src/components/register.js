@@ -70,7 +70,11 @@ function Register() {
     <div>
         <NavBar />
     <div className = "register-page">
-       
+    
+    <img 
+            src="./garden.png"
+            className="register-image" />
+
         <form onSubmit={handleSubmit} className="register-form">
         <h1>REGISTER</h1>
             <label htmlFor="firstName">First Name</label>
@@ -129,6 +133,8 @@ function Register() {
             {errorMessage && <p className="error-message">{errorMessage}</p>}
             <button className="register-button" type="submit">SUBMIT</button>
         </form>
+
+        
      </div>
 </div>
   )

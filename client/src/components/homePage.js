@@ -41,6 +41,8 @@ function HomePage() {
             src="./flowers.jpg"
             className='hands-image'
             />
+
+          <div>
           <p>"A journey of a thousand miles begins with a single step."
           <br></br>
           <br></br>
@@ -49,9 +51,10 @@ function HomePage() {
           guidance, healing, or simply a space to talk, 
           I’m here to support you. 
           </p>  
+          <button className='book-session' onClick ={clickNavigate}>BOOK SESSION</button> 
+          </div>  
         </div>
 
-        <button className='book-session' onClick ={clickNavigate}>BOOK SESSION</button> 
 
         <div className="third-block">
             <div className= "card" style={{ width: '18rem' }}>
