@@ -83,7 +83,7 @@ function Login() {
                     />
 
             <label htmlFor="password">Password</label>
-                <div>
+            <div className="password-container">
                     <input
                         type={showPassword ? 'text' : 'password'}
                         placeholder="Password"
@@ -97,8 +97,9 @@ function Login() {
                     </button>
                     </div>
 
-                    <button className="login-button" type="submit">SUBMIT</button>
-
+                    <div className='login-submit'>
+                      <button className="login-button" type="submit">SUBMIT</button>
+                    </div>
                     {errorMessage && <p className="error-message">{errorMessage}</p>}
                     {successMessage && <p className="success-message">{successMessage}</p>}
                 </form>

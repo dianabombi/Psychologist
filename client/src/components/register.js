@@ -76,6 +76,7 @@ function Register() {
             className="register-image" />
 
         <form onSubmit={handleSubmit} className="register-form">
+
         <h1>REGISTER</h1>
             <label htmlFor="firstName">First Name</label>
             <input 
@@ -118,7 +119,8 @@ function Register() {
                 />
             
             <label htmlFor="password">Password</label>
-            <div>
+
+        <div className="password-container">
             <input 
                 type={showPassword ? 'text' : 'password'}
                 placeholder = "password"
@@ -127,17 +129,21 @@ function Register() {
                 onChange ={handleChange}
                 required
                 />
-                <button className="password-eye" type="button" onClick={togglePasswordVisibility}>
-                    {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye} />}
-                </button>
 
+            <button className="password-eye" type="button" onClick={togglePasswordVisibility}>
+                {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye} />}
+            </button>
+        </div>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
-            <button className="register-button" type="submit">SUBMIT</button>
-
+            
+            <div className="register-submit">
+                <button className="register-button" type="submit">SUBMIT</button>
             </div>
-        </form>
-     </div>
-</div>
+
+           
+          </form>
+        </div>
+    </div>
   )
 }
 
