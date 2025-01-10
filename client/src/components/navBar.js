@@ -63,9 +63,12 @@ function NavBar () {
 
   return (
     <div>
-      <FontAwesomeIcon icon={faHouse} onClick={handleHomeClick} />
+  
     <div className="navBar">
       <ul className="listBar">
+      <li className="navItem homeIcon" onClick={handleHomeClick}>
+      <FontAwesomeIcon icon={faHouse} />
+      </li>
         <li className="navItem" onClick={handleAboutClick}>About Me</li>
         <li className="navItem" onClick={toggleDropdown}>
           Services
@@ -81,6 +84,7 @@ function NavBar () {
 
         {isLoggedIn ? (
           <li className="navItem" onClick={handleLogout}>Log Out</li>
+    
         ) : (
           <>
             <li className="navItem" onClick={handleLoginClick}>Login</li>
