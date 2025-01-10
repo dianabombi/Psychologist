@@ -23,13 +23,13 @@ const getNotesById = async (req, res) => {
 
 const createNote = async (req, res) => {
     try {
-        const { date, content, author } = req.body;
+        const { date, content, mood } = req.body;
 
-                if (!date || !content || !author) {
+                if (!date || !content || !mood) {
             return res.status(400).json({ error: "All fields are required" });
         }
 
-        const newDiary = new Diary({ date, content, author });
+        const newDiary = new Diary({ date, content, mood });
         await newDiary.save();
         return res.status(201).json(newDiary);
     } catch (error) {

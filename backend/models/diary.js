@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const diarySchema = new mongoose.Schema({
     date: { type: String, required: true },
     content: {type: String},
-    author: { type: String, required: true },
+    mood: { type: String, required: true },
   });
 
 const Diary = mongoose.model('Diary', diarySchema); // model always starts with capital letter and singular

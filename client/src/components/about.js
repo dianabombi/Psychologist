@@ -19,15 +19,14 @@ function About() {
         className="image-psychologist"
       />
 
-<div className="container-text">
+    <div>
       <p className="text-about">I am Barbora, psychologist with 6 years of practice.
         Your journey to well-being starts here.
 
         Are you feeling overwhelmed, stuck, or simply in need of someone to talk to? At Safe Space Psychology, we provide supportive space where you can explore your thoughts, feelings, and challenges without judgment. Together, we’ll work toward clarity, healing, and growth.  
+        You don't know where to start?
+        <button className='contactMe-button' onClick={clickNavigate}>BOOK SESSION</button>    
       </p>
-        <button className='contactMe-button' onClick={clickNavigate}>WHERE TO START ?</button>
-        <button className='contactMe-button'>CONTACT ME</button>
-        <button className='contactMe-button'>GIFT OTHERS</button>   
   </div>
 </div>
 </div>

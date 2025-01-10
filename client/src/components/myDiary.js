@@ -10,6 +10,8 @@ function MyDiary() {
   const [editIndex, setEditIndex] = useState(null);
   const [editDiary, setEditDiary] = useState(null);
 
+  const [mood, setMood] = useState("");
+
   useEffect(() => {
     axios
       .get("http://localhost:8000/diary")
@@ -20,13 +22,13 @@ function MyDiary() {
   const handleSave = (event) => {
     event.preventDefault();
 
-    const newDiary = { date, content, author };
+    const newDiary = { date, content, mood };
     axios.post("http://localhost:8000/diary/create", newDiary)
       .then((response) => {
         setDiaries([...diaries, response.data]);
         setDate("");
         setContent("");
-        setAuthor("");
+        setMood("");
       })
       .catch((error) => console.error("Error saving diary:", error));
   };
@@ -71,12 +73,18 @@ function MyDiary() {
     }
   };
 
+  const handleChange = (event) => {
+    setMood(event.target.value);
+  };
+
   return (
     <div>
         <NavBar />
       <div className="diary-page">
+        
         <form className="diary-form" onSubmit={handleSave}>
-          <h2>Welcome to your journaling experience</h2>
+          <h2>Welcome to your journaling experience.</h2>
+          <p>Sharing journal entries or insights gained through journaling experience, can deepen conversations in your therapeutical sessions.</p>
           <label htmlFor="date">Date</label>
           <input
             type="text"
@@ -94,21 +102,32 @@ function MyDiary() {
             onChange={(e) => setContent(e.target.value)}
             placeholder="Enter your notes"
           />
-          <label htmlFor="author">Author</label>
-          <input
-            type="text"
-            id="author"
-            name="author"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            placeholder="Author"
-          />
+       <div className="mood-container">
+
+              <label htmlFor="mood">Select Mood</label>
+              <select 
+                  id="mood" 
+                  name="mood" 
+                  value={mood} 
+                  onChange={handleChange} 
+                  required
+              >
+                  <option value="">--Please choose a mood--</option>
+                  <option value="happy">Happy</option>
+                  <option value="sad">Sad</option>
+                  <option value="angry">Angry</option>
+                  <option value="anxious">Anxious</option>
+                  <option value="calm">Calm</option>
+                  <option value="excited">Excited</option>
+              </select>
+          </div>
+
           <button type="submit" className="button-diary">
             SAVE
           </button>
         </form>
 
-        <h3>Diary daily notes</h3>
+        <h3>My Diary:</h3>
         {diaries.map((diary, index) => (
           <div key={diary._id}>
             {editIndex === index ? (
@@ -127,13 +146,22 @@ function MyDiary() {
                   value={editDiary.content}
                   onChange={handleEditChange}
                 />
-                <label>Author</label>
-                <input
-                  type="text"
-                  name="author"
-                  value={editDiary.author}
+                
+                <label>Mood</label>
+                <select
+                  name="mood"
+                  value={editDiary.mood}
                   onChange={handleEditChange}
-                />
+                >
+                  <option value="">--Please choose a mood--</option>
+                  <option value="happy">Happy</option>
+                  <option value="sad">Sad</option>
+                  <option value="angry">Angry</option>
+                  <option value="anxious">Anxious</option>
+                  <option value="calm">Calm</option>
+                  <option value="excited">Excited</option>
+                </select>
+
                 <button onClick={handleEditSave}>Save</button>
                 <button onClick={() => setEditIndex(null)}>Cancel</button>
               </div>
@@ -146,7 +174,7 @@ function MyDiary() {
                   <strong>Content</strong> {diary.content}
                 </p>
                 <p>
-                  <strong>Author</strong> {diary.author}
+                  <strong>Mood</strong> {diary.mood}
                 </p>
                 <button
                   className="edit-button"
