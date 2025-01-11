@@ -332,6 +332,9 @@ input:focus {
 }
 
 /* Button in booking page*/
+.booking-container {
+  display:flex;
+}
 .booking-confirm {
     border: none;
     border-radius: 3px;
@@ -345,6 +348,10 @@ input:focus {
 .booking-confirm:hover {
     background-color: #213555; 
     box-shadow: rgba(14, 30, 37, 0.12) 0px 4px 8px 0px, rgba(14, 30, 37, 0.32) 0px 4px 20px 0px; 
+}
+
+.booking-image {
+  width: 50%;
 }
 
 
@@ -641,7 +648,7 @@ h3 {
   border-radius: 8px;
   width: 25%;
   height: 25%;
-  margin: 7rem;
+  margin: 10rem;
 }
 
 /* DASHBOARD */

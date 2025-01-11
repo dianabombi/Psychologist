@@ -8,7 +8,7 @@ function BookingSystem() {
   const [selectedTime, setSelectedTime] = useState("");
   const [bookingDetails, setBookingDetails] = useState(null);
 
-  const timeSlots = ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "13:00 PM", "14:00 PM", "15:00 PM"];
+  const timeSlots = ["08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM", "12:00 PM", "13:00 PM", "14:00 PM", "15:00 PM", "16:00 PM", "17:00 PM"];
 
   const handleBookingSubmit = async (details) => {
       const bookingData = { 
@@ -39,6 +39,12 @@ function BookingSystem() {
   return (
     <div> 
       <NavBar />
+      <div className="booking-container">
+      <img 
+        src="./therapy.jpg" 
+        className ="booking-image"
+        />
+
       <div className="booking-page">
       <h1 >Book your session here</h1>
       
@@ -80,6 +86,7 @@ function BookingSystem() {
           </p>
         </div>
       )}
+    </div>
     </div>
     </div>
   );

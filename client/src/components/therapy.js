@@ -20,7 +20,6 @@ function Therapy() {
             <br></br>It involves conversations and guided interactions between a trained therapist and a client, aimed at fostering personal growth, improving mental health, and overcoming obstacles.
             <br></br>
             Therapy is not just for people facing significant mental health challenges; it can also benefit those seeking self-discovery, stress management, or guidance during life transitions. 
-            <br></br> Whether addressing anxiety, depression, trauma, or relationship issues, therapy provides a safe, confidential space to work toward personal well-being and resilience.
             </p>
       <h3>Not sure why to star?</h3>
 

@@ -17,7 +17,7 @@ function HomePage() {
         
               <div className="landing-text">
 
-                <h2>Welcome to Safe Space Psychology.</h2>
+                <h2>Welcome to Safe Space Psychology</h2>
                  <br></br>
                 <p>
                 Life can be overwhelming, but you don’t have to face it alone. 
