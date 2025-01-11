@@ -604,16 +604,24 @@ h3 {
 
   /* THERAPY PAGE */
 
+.therapy-container {
+  display: flex;
+  gap: 10rem;
+}
+
 .therapy-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 20px;
   background-color: #D8C4B6;
   font-family: "Playfair Display", serif;
   line-height: 1.6;
   color: #333;
   padding: 20px;
-  margin: 20px auto;
+  margin: 10px;
   border-radius: 8px;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-  max-width: 800px;
+  max-width: 2000px;
 }
 
 .therapy-page h3 {
@@ -624,6 +632,16 @@ h3 {
 }
 .therapy-page p {
   margin-bottom: 20px;
+}
+
+.bara-sea {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  width: 25%;
+  height: 25%;
+  margin: 7rem;
 }
 
 /* DASHBOARD */
