@@ -183,6 +183,8 @@ input:focus {
   width: 100%;
   height: 80px;
   font-family: "Playfair Display", serif;
+  position: relative;
+  padding-right: 20px; 
 }
 
 .navItem {
@@ -207,13 +209,14 @@ input:focus {
 
 
 .dropdownMenu {
-    position: absolute;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    display: flex;
-    flex-direction: column;
-    background-color: #213555;
-    padding: 1rem;
+  position: absolute;
+  top: 100%;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  display: flex;
+  flex-direction: column;
+  background-color: #213555;
+  padding: 1rem;
 }  
 
 .dropdownItem {
@@ -621,4 +624,29 @@ h3 {
 }
 .therapy-page p {
   margin-bottom: 20px;
+}
+
+/* DASHBOARD */
+
+.chart-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 2rem;
+  justify-items: center; 
+  align-items: center; 
+  padding: 1rem;
+  max-width: 2000px; 
+  margin-left: 20rem;
+}
+
+.chart-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  background: #f9f9f9;
+  padding: 1rem; 
+  width: 100%; 
+  min-width: 300px; 
 }
