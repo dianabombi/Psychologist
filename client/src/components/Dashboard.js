@@ -41,7 +41,7 @@ function Dashboard() {
     { name: 'Inactive Users', value: 100 },
   ];
   
-  const COLORS = ['#8884d8', '#82ca9d'];
+  const COLORS = ['#df5a66', '#ebbdb7'];
 
   const blogContributorsData = [
     { month: 'January', posts: 10 },
@@ -148,7 +148,7 @@ function Dashboard() {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="posts" stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line type="monotone" dataKey="posts" stroke="#e3775a" activeDot={{ r: 8 }} />
         </LineChart>
       </div>
       </div>
