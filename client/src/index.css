@@ -338,7 +338,7 @@ input:focus {
 .booking-confirm {
     border: none;
     border-radius: 3px;
-    width: 8%;
+    width: 7rem;
     padding: 0.5rem;
     background-color: #3E5879;
     color: white;
@@ -351,7 +351,9 @@ input:focus {
 }
 
 .booking-image {
-  width: 50%;
+  width: 800px; /* Set a fixed width */
+  height: 500px; /* Set a fixed height */
+  object-fit: cover; /* Ensure the image scales properly within the dimensions */
 }
 
 
@@ -691,22 +693,22 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f0f0f0; /* Light grey */
-  border: 2px solid #ccc; /* Border color */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slight shadow for depth */
+  background-color: #f0f0f0; 
+  border: 2px solid #ccc; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   text-align: center;
   cursor: pointer;
   transition: transform 0.2s, background-color 0.2s;
 }
 
 .tile:hover {
-  background-color: #e0e0e0; /* Slightly darker grey */
-  transform: translateY(-5px); /* Slight hover effect */
+  background-color: #e0e0e0; 
+  transform: translateY(-5px); 
 }
 
 .tile h2 {
   font-size: 20px;
-  color: #333; /* Darker text color */
+  color: #333; 
   margin: 0;
 }

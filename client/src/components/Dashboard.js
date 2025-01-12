@@ -21,7 +21,6 @@ function Dashboard() {
   }, [user.role, navigate]);
 
   const redirectCalendar = () => navigate("/calendar");
-  const addBlog = () => navigate("/blog");
   const confirmBooking = () => navigate("/bookingConfirmation");
   
   const handleLogout = () => {
@@ -66,9 +65,6 @@ function Dashboard() {
             </div>
             <div>
               <button>Availability confirmation</button>
-            </div>
-            <div>
-              <button onClick={addBlog}>Blog</button>
             </div>
             <div>
               <button>Settings</button>
