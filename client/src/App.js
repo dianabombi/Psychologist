@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/protectedroutesComponent";
 import CalendarPage from "./components/calendarPage";
 import MyDiary from "./components/myDiary";
 import Therapy from "./components/therapy";
+import UserDashboard from "./components/userDashboard";
 
 function App() {
   return (
@@ -25,8 +26,20 @@ function App() {
 
         <Route 
           path="/blog" 
-          element= {<Blog />} 
+          element={
+            <ProtectedRoute>
+              <Blog />
+            </ProtectedRoute>
+          } 
         />
+
+        <Route
+          path="/userDashboard"
+          element={
+            <ProtectedRoute>
+              <UserDashboard />
+            </ProtectedRoute>
+          } />
 
         <Route
           path="/dashboard"

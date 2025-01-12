@@ -37,10 +37,6 @@ function NavBar () {
     navigate("/login");
   };
 
-  const handleBlogClick = () => {
-      navigate("/blog");
-  };
-
   const handleAboutClick = () => {
     navigate("/about");
   };
@@ -77,7 +73,6 @@ function NavBar () {
               <li className="dropdownItem" onClick={handleTherapyClick}>Therapy</li>
               <li className="dropdownItem" onClick={handleBookingClick}>Book an appointment</li>
               <li className="dropdownItem" onClick={handleDiaryClick}>My Diary</li>
-              <li className="dropdownItem" onClick={handleBlogClick}>Blog</li>
             </ul>
           )}
         </li>
