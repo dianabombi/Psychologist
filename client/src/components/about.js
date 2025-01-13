@@ -19,7 +19,7 @@ function About() {
         className="image-psychologist"
       />
 
-    <div>
+    <div >
       <p className="text-about">I am Barbora, psychologist with 6 years of practice.
         Your journey to well-being starts here.
 

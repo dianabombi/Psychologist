@@ -5,18 +5,24 @@ import NavBar from "./navBar";
 function MyDiary() {
   const [date, setDate] = useState("");
   const [content, setContent] = useState("");
-  const [author, setAuthor] = useState("");
   const [diaries, setDiaries] = useState([]);
   const [editIndex, setEditIndex] = useState(null);
   const [editDiary, setEditDiary] = useState(null);
 
   const [mood, setMood] = useState("");
 
+  const fetchDiaries = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/diary");
+      setDiaries(response.data);
+    } catch (error) {
+      console.error("Error fetching diaries:", error);
+    }
+  };
+
+  // Call fetchDiaries on component mount
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/diary")
-      .then((response) => setDiaries(response.data))
-      .catch((error) => console.error("Error fetching diaries:", error));
+    fetchDiaries();
   }, []);
 
   const handleSave = (event) => {
@@ -45,20 +51,18 @@ function MyDiary() {
     setEditDiary({ ...editDiary, [name]: value });
   };
 
-  const handleEditSave = (event) => {
+  const handleEditSave = async (event) => {
     event.preventDefault();
     const { _id } = editDiary;
-    axios
-      .put(`http://localhost:8000/diary/${_id}`, editDiary)
-      .then((response) => {
-        const updatedDiaries = diaries.map((diary) =>
-          diary._id === _id ? response.data : diary
-        );
-        setDiaries(updatedDiaries);
-        setEditIndex(null);
-        setEditDiary(null);
-      })
-      .catch((error) => console.error("Error updating diary:", error));
+
+    try {
+      await axios.put(`http://localhost:8000/diary/${_id}`, editDiary);
+      await fetchDiaries(); // Re-fetch data after editing
+      setEditIndex(null);
+      setEditDiary(null);
+    } catch (error) {
+      console.error("Error updating diary:", error);
+    }
   };
 
   const handleDelete = (id) => {
