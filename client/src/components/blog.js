@@ -118,7 +118,7 @@ function Blog () {
             </form>
 
             <div>
-            <h3>Blogs</h3>
+            <h3>This section is under the reconstruction.</h3>
             {blogs.map ((blog, index) => (
                 <div key={index}>
                     {editIndex === index ? (

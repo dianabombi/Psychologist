@@ -39,7 +39,7 @@ function Dashboard() {
     { name: "Inactive Users", value: 100 },
   ];
 
-  const COLORS = ["#df5a66", "#ebbdb7"];
+  const COLORS = ["#df5a66", "#9b1d78"];
 
   const blogContributorsData = [
     { month: "January", posts: 10 },
@@ -96,8 +96,8 @@ function Dashboard() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="sessions" fill="#8884d8" />
-              <Bar dataKey="bookings" fill="#82ca9d" />
+              <Bar dataKey="sessions" fill="#4caf50" />
+              <Bar dataKey="bookings" fill="#1d7874" /> 
             </BarChart>
           </div>
 
@@ -141,7 +141,7 @@ function Dashboard() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="posts" stroke="#e3775a" activeDot={{ r: 8 }} />
+              <Line type="monotone" dataKey="posts" stroke="#f7c74a" activeDot={{ r: 8 }} />
             </LineChart>
           </div>
         </div>

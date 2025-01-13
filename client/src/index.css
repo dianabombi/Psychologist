@@ -54,7 +54,8 @@
 /* REGISTER */
 
 .register-page, .blog-page {
-    display: flex;
+    display:flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     /* background-color: #F5EFE7; */
@@ -64,6 +65,7 @@
 
 .register-form, .login-form, .blog-form {
     display: flex;
+
     flex-direction: column; 
     gap: 15px; 
     width: 100%;
@@ -575,7 +577,7 @@ h3 {
 .edit-button {
   margin-right: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #28a745;
+  background-color: #1f83a4;
   color: white;
   border: none;
   border-radius: 5px;
@@ -584,13 +586,13 @@ h3 {
 }
   
 .edit-button:hover {
-  background-color: #218838;
+  background-color: #1d6278;
 }
   
 .delete-button {
   margin-right: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #dc3545;
+  background-color: #e9757f;
   color: white;
   border: none;
   border-radius: 5px;
@@ -599,7 +601,7 @@ h3 {
 }
   
 .delete-button:hover {
-  background-color: #c82333;
+  background-color: #DF5A66;
 }
 
 
