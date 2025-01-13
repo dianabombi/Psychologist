@@ -80,8 +80,7 @@ function MyDiary() {
   return (
     <div>
         <NavBar />
-      <div className="diary-page">
-        
+      <div className="diary-page"> 
         <form className="diary-form" onSubmit={handleSave}>
           <h2>Welcome to your journaling experience.</h2>
           <p>Sharing journal entries or insights gained through journaling experience, can deepen conversations in your therapeutical sessions.</p>
@@ -102,8 +101,8 @@ function MyDiary() {
             onChange={(e) => setContent(e.target.value)}
             placeholder="Enter your notes"
           />
-       <div className="mood-container">
-
+          
+           <div className="mood-container">
               <label htmlFor="mood">Select Mood</label>
               <select 
                   id="mood" 
@@ -126,10 +125,12 @@ function MyDiary() {
             SAVE
           </button>
         </form>
+    </div>
 
-        <h3>My Diary:</h3>
+      <h3 className="h3-diary">My daily Diary</h3>
+        <div className="diary-tiles-container">
         {diaries.map((diary, index) => (
-          <div key={diary._id}>
+          <div key={diary._id} className="diary-tile">
             {editIndex === index ? (
               <div>
                 <label>Date</label>
@@ -162,9 +163,10 @@ function MyDiary() {
                   <option value="excited">Excited</option>
                 </select>
 
-                <button onClick={handleEditSave}>Save</button>
-                <button onClick={() => setEditIndex(null)}>Cancel</button>
+                <button onClick={handleEditSave} className="edit-button ">Save</button>
+                <button onClick={() => setEditIndex(null)} className="delete-button">Cancel</button>
               </div>
+
             ) : (
               <div>
                 <p>
@@ -176,24 +178,28 @@ function MyDiary() {
                 <p>
                   <strong>Mood</strong> {diary.mood}
                 </p>
-                <button
-                  className="edit-button"
-                  onClick={() => handleEdit(index)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDelete(diary._id)}
-                >
-                  Delete
-                </button>
+
+                <div className="edit-delete-button-container"> 
+                  <button
+                    className="edit-button"
+                    onClick={() => handleEdit(index)}
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    className="delete-button"
+                    onClick={() => handleDelete(diary._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
               </div>
             )}
           </div>
         ))}
       </div>
-    </div>
+      </div>
   );
 }
 

@@ -1,0 +1,60 @@
+
+/* Medium screens (tablets, etc.) */
+@media (max-width: 992px) {
+    .homepage {
+        flex-direction: column; 
+        padding: 2%; 
+    }
+
+    .landing-text {
+        margin: 5rem 2rem;
+        font-size: 1.2rem;
+    }
+
+    .register-form, .login-form, .blog-form {
+        width: 90%; 
+    }
+
+    .navBar {
+        flex-direction: column; 
+        align-items: flex-start; 
+        height: auto;
+        padding: 10px; 
+    }
+}
+
+
+@media (max-width: 768px) {
+    .landing-text {
+        margin: 2rem 1rem;
+        font-size: 1rem;
+    }
+
+    .register-image, .login-image {
+        display: none; 
+    }
+
+    .listBar {
+        flex-direction: column; 
+        gap: 10px;
+    }
+}
+
+/* Extra small screens (smaller phones) */
+@media (max-width: 576px) {
+    .homepage, .about-page, .calendar-page, .booking-page {
+        padding: 1rem;
+    }
+
+    .text-about, .second-text {
+        font-size: 18px;
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .register-button, .login-button, .book-session {
+        width: 100%; 
+        height: auto;
+        padding: 10px;
+    }
+}

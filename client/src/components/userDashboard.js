@@ -16,8 +16,10 @@ function UserDashboard() {
       };
   return (
     <div>
-        <NavBar />
-        <h1>Welcome to your dashboard</h1>
+       <NavBar />
+    <div className='user-dasbhoard-main'>
+        <h1>Welcome to your dashboard 🪷 🍀 </h1>
+
         <div className="tile-container">
             <div className="tile" onClick={diary}>
                 <h2>My Diary</h2>
@@ -26,6 +28,7 @@ function UserDashboard() {
                 <h2>Add Blog</h2>
             </div>
         </div>
+    </div>
   </div>
   );
 }
