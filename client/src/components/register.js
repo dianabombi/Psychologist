@@ -44,7 +44,7 @@ function Register() {
         }
     
         try {
-            const response = await axios.post('http://localhost:8000/users/register', formInput);
+            const response = await axios.post('https://psychologist-w2pn.onrender.com/users/register', formInput);
             console.log("Registration Success:", response.data);
 
             if (response.data.status === true) {

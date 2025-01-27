@@ -13,7 +13,7 @@ function MyDiary() {
 
   const fetchDiaries = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/diary");
+      const response = await axios.get("https://psychologist-w2pn.onrender.com/diary");
       setDiaries(response.data);
     } catch (error) {
       console.error("Error fetching diaries:", error);
@@ -29,7 +29,7 @@ function MyDiary() {
     event.preventDefault();
 
     const newDiary = { date, content, mood };
-    axios.post("http://localhost:8000/diary/create", newDiary)
+    axios.post("https://psychologist-w2pn.onrender.com/diary/create", newDiary)
       .then((response) => {
         setDiaries([...diaries, response.data]);
         setDate("");
@@ -56,7 +56,7 @@ function MyDiary() {
     const { _id } = editDiary;
 
     try {
-      await axios.put(`http://localhost:8000/diary/${_id}`, editDiary);
+      await axios.put(`https://psychologist-w2pn.onrender.com/diary/${_id}`, editDiary);
       await fetchDiaries(); // Re-fetch data after editing
       setEditIndex(null);
       setEditDiary(null);
@@ -68,7 +68,7 @@ function MyDiary() {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this note?")) {
       axios
-        .delete(`http://localhost:8000/diary/${id}`)
+        .delete(`https://psychologist-w2pn.onrender.com/diary/${id}`)
         .then(() => {
           const updatedDiaries = diaries.filter((diary) => diary._id !== id);
           setDiaries(updatedDiaries);

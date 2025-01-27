@@ -19,7 +19,7 @@ function BookingSystem() {
   };
 
   try {
-    const response = await fetch('http://localhost:8000/bookings/bookings', {
+    const response = await fetch('https://psychologist-w2pn.onrender.com/bookings/bookings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bookingData),

@@ -32,7 +32,7 @@ function Login() {
         }
     
         try {
-            const response = await axios.post('http://localhost:8000/users/login', credentials);
+            const response = await axios.post('https://psychologist-w2pn.onrender.com/users/login', credentials);
     
             if (response?.data?.token && response?.data?.role) {
                 // Save token in localStorage

@@ -9,7 +9,7 @@ const CalendarPage = () => {
     useEffect(() => {
         const fetchSessions = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/sessions');
+                const response = await axios.get('https://psychologist-w2pn.onrender.com/api/sessions');
                 console.log(response);
                 setSessions(response.data);
             } catch (error) {
